@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game - Kokok-Pot</title>
+    <link rel="icon" type="image/png" href="images/ruleta/ruleta/siete.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/game.css">
+</head>
+<body class="game-page">
+    <div class="container">
+        <div class="game-screen">
+            <div class="game-header">
+                <button id="backBtn" class="btn btn-back"></button>
+            </div>
+
+            <div class="game-info">
+                <div class="info-item">
+                    <span class="label">Player:</span>
+                    <span id="currentPlayer"></span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Spins left:</span>
+                    <span id="spinsLeft">50</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Score:</span>
+                    <span id="currentScore">0</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Free spins:</span>
+                    <span id="freeSpins">0</span>
+                </div>
+            </div>
+
+            <!-- Área de mensajes arriba -->
+            <div class="message-area" id="messageArea"></div>
+
+            <div class="slot-machine">
+                <div class="reels">
+                    <div class="reel" id="reel1">
+                        <div class="symbol"><img src="images/ruleta/ruleta/siete.png" alt="siete" class="slot-icon" /></div>
+                    </div>
+                    <div class="reel" id="reel2">
+                        <div class="symbol"><img src="images/ruleta/ruleta/siete.png" alt="siete" class="slot-icon" /></div>
+                    </div>
+                    <div class="reel" id="reel3">
+                        <div class="symbol"><img src="images/ruleta/ruleta/siete.png" alt="siete" class="slot-icon" /></div>
+                    </div>
+                </div>
+                
+                <button id="spinBtn" class="spin-button">🎰 SPIN</button>
+                <button id="restartBtn" class="btn btn-secondary">🔄 Restart Game</button>
+                
+                <!-- Palanca del slot machine -->
+                <div class="palanca-container">
+                    <div class="palanca" id="palanca"></div>
+                </div>
+            </div>
+
+            <div id="gameOverModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="game-title-logo"></div>
+                        <h2>🎉 Game Over!</h2>
+                    </div>
+                    <p>Your final score: <span id="finalScore"></span></p>
+                    <div class="modal-buttons">
+                        <button id="playAgainBtn" class="btn btn-primary">Play Again</button>
+                        <button id="menuBtn" class="btn btn-secondary">Back to Menu</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/sound.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/ui.js"></script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Kokok-Pot</title>
+    <link rel="icon" type="image/png" href="images/ruleta/ruleta/siete.png">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="menu-page">
+    <div class="container">
+        <div class="menu-screen">
+            <div class="menu-header">
+                <h1 class="game-title">
+                    <div class="game-title-logo"></div>
+                    <span class="game-title-text">KOKOK-POT</span>
+                </h1>
+                <button id="backBtn" class="btn btn-back"></button>
+            </div>
+            
+            <div class="player-info">
+                <p>Welcome, <span id="playerNameDisplay"></span>!</p>
+            </div>
+            
+            <div class="menu-buttons">
+                <button id="playBtn" class="btn btn-primary">🎮 Play</button>
+                <button id="instructionsBtn" class="btn btn-secondary">📋 Instructions</button>
+                <button id="leaderboardBtn" class="btn btn-secondary">🏆 Leaderboard</button>
+                <button id="logoutBtn" class="btn btn-danger">🚪 Logout</button>
+            </div>
+
+            <div id="instructionsModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <div class="modal-header">
+                        <div class="game-title-logo"></div>
+                        <h2>📋 Game Instructions</h2>
+                    </div>
+                    <div class="instructions">
+                        <h3>🎯 Objective:</h3>
+                        <p>Get the highest score possible in 50 spins</p>
+                        
+                        <h3>🎰 Symbols and Scores:</h3>
+                        <ul>
+                            <li>3 x 7️⃣ = 300 points (Jackpot - 1 in ~35 spins)</li>
+                            <li>3 x ⭐ = 270 points (Wild completes any combination)</li>
+                            <li>3 x 💎 = 150 points</li>
+                            <li>3 x 🔔 = 100 points</li>
+                            <li>3 x 🍇 = 80 points</li>
+                            <li>3 x 🍋 = 60 points</li>
+                            <li>3 x 🍒 = 40 points</li>
+                            <li>3 x 🎰 = 25 points + 3 free spins</li>
+                            <li>2 same + any = Variable points (2-20)</li>
+                            <li>3 x 💀 = -25 points (very rare)</li>
+                            <li>3 x ☠️ = -10 points (very rare)</li>
+                        </ul>
+                        
+                        <h3>🎁 Extra Spins:</h3>
+                        <ul>
+                            <li>🎰🎰🎰 (3 slot machines) = +3 free spins</li>
+                            <li>💎💎 (2 diamonds) = +1 free spin</li>
+                            <li>⭐ (wild in center) = +1 free spin</li>
+                        </ul>
+                        
+                        <h3>📊 Probabilities (50 spins):</h3>
+                        <ul>
+                            <li>7️⃣ appears ~35% per reel (more frequent!)</li>
+                            <li>Negative symbols: ~3% total per reel (less punishing)</li>
+                            <li>Wild (⭐) appears ~4% per reel</li>
+                            <li>Expected ~20+ wins per 50 spins</li>
+                            <li>Jackpot probability: ~75% in 50 spins</li>
+                        </ul>
+                        
+                        <p><strong>Good luck!</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/sound.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        // Verificar autenticación
+        if (!localStorage.getItem('currentUser')) {
+            window.location.href = 'login.html';
+        }
+
+        // Mostrar nombre del jugador
+        document.getElementById('playerNameDisplay').textContent = localStorage.getItem('currentUser');
+
+        // Event listeners
+        document.getElementById('backBtn').addEventListener('click', () => {
+            window.location.href = 'login.html';
+        });
+
+        document.getElementById('playBtn').addEventListener('click', () => {
+            window.location.href = 'game.html';
+        });
+
+        document.getElementById('leaderboardBtn').addEventListener('click', () => {
+            window.location.href = 'leaderboard.html';
+        });
+
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            logout();
+        });
+
+        // Modal de instrucciones
+        const modal = document.getElementById('instructionsModal');
+        const instructionsBtn = document.getElementById('instructionsBtn');
+        const closeBtn = document.querySelector('.close');
+
+        instructionsBtn.addEventListener('click', () => {
+            modal.style.display = 'block';
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

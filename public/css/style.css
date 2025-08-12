@@ -1,0 +1,1436 @@
+/* Estilos generales */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  min-height: 100vh;
+  color: #333;
+  overflow-x: hidden;
+}
+
+/* Fondos específicos para cada página */
+body.index-page {
+  background: url('../images/backgroundplay.png') no-repeat center center fixed;
+  background-size: cover;
+}
+
+body.login-page {
+  background: url('../images/login.png') no-repeat center center fixed;
+  background-size: cover;
+}
+
+body.menu-page {
+  background: url('../images/menu.png') no-repeat center center fixed;
+  background-size: cover;
+}
+
+body.leaderboard-page {
+  background: url('../images/leaderboards.png') no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* Variables ajustables para LOGIN */
+.login-page {
+  /* ancho total del bloque (h2 + input + botón) */
+  --login-block-width: 32vw;
+  /* desplazamiento superior del bloque en la pantalla */
+  --login-offset-top: 0vh;
+  /* padding interno del banner del título */
+  --login-title-pad-v: 2vh;
+  --login-title-pad-h: 2vw;
+  /* alturas de los controles */
+  --login-input-height: 6.5vh;
+  --login-button-height: 9vh;
+  /* offsets verticales finos para ubicar h2 e input en líneas específicas */
+  --login-after-logo-space: 1vh;   /* espacio bajo el logo */
+  --login-title-top: 0.2vh;          /* distancia desde el logo hasta el h2 */
+  --login-title-bottom: 7vh;     /* espacio bajo el h2 */
+  --login-input-top: 2vh;          /* espacio sobre el input */
+  --login-input-bottom: 5vh;       /* espacio bajo el input */
+}
+
+.container {
+  width: 100vw;
+  max-width: 100vw;
+  margin: 0;
+  padding: 2vw;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Título del juego con logo */
+.game-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5vw;
+  margin-bottom: 2vh;
+}
+
+.game-title-logo {
+  width: 8vw;
+  height: 8vw;
+  background: url('../images/logo.png') no-repeat center center;
+  background-size: contain;
+}
+
+.game-title-text {
+  font-size: 4vw;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0.3vw 0.3vw 0.6vw rgba(0, 0, 0, 0.8);
+  margin: 0;
+}
+
+/* Header del menú y leaderboard */
+.menu-header,
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2vh;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 1vw;
+}
+
+.menu-header .game-title,
+.game-header .game-title {
+  margin-bottom: 0;
+}
+
+/* Ajustes para el header del juego */
+.game-header {
+  margin-bottom: 1vh;
+}
+
+/* Botón back personalizado */
+.btn-back {
+  background: url('../images/botonback.png') no-repeat center center;
+  background-size: contain;
+  border: none;
+  width: 10vw;
+  height: 5vw;
+  color: transparent;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.btn-back:hover {
+  transform: scale(1.05);
+}
+
+/* Ajustes para el botón back en diferentes contextos */
+.menu-header .btn-back,
+.game-header .btn-back {
+  margin-left: 2vw;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0.2vw 0.2vw 0.4vw rgba(0, 0, 0, 0.5), 0 0 1vw rgba(255, 255, 255, 0.3);
+  }
+  to {
+    text-shadow: 0.2vw 0.2vw 0.4vw rgba(0, 0, 0, 0.5), 0 0 2vw rgba(255, 255, 255, 0.6);
+  }
+}
+
+.game-subtitle {
+  text-align: center;
+  color: #fff;
+  font-size: 2vw;
+  margin-bottom: 2vh;
+  opacity: 0.9;
+}
+
+/* Botones */
+.btn {
+  padding: 1.2vw 2.4vw;
+  border: none;
+  border-radius: 0.8vw;
+  font-size: 2vw;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  min-width: 20vw;
+  margin: 0.8vw;
+}
+
+.btn-primary {
+  background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+  color: white;
+  box-shadow: 0 0.4vw 1.5vw rgba(255, 107, 107, 0.4);
+}
+
+.btn-primary:hover {
+  transform: translateY(-0.2vw);
+  box-shadow: 0 0.6vw 2vw rgba(255, 107, 107, 0.6);
+}
+
+.btn-secondary {
+  background: linear-gradient(45deg, #74b9ff, #0984e3);
+  color: white;
+  box-shadow: 0 0.4vw 1.5vw rgba(116, 185, 255, 0.4);
+}
+
+.btn-secondary:hover {
+  transform: translateY(-0.2vw);
+  box-shadow: 0 0.6vw 2vw rgba(116, 185, 255, 0.6);
+}
+
+.btn-danger {
+  background: linear-gradient(45deg, #fd79a8, #e84393);
+  color: white;
+  box-shadow: 0 0.4vw 1.5vw rgba(253, 121, 168, 0.4);
+}
+
+.btn-danger:hover {
+  transform: translateY(-0.2vw);
+  box-shadow: 0 0.6vw 2vw rgba(253, 121, 168, 0.6);
+}
+
+/* Pantallas */
+.welcome-screen,
+.menu-screen,
+.leaderboard-screen {
+  background: rgba(255, 255, 255, 0.98);
+  padding: 4vw;
+  border-radius: 2vw;
+  box-shadow: 0 2vw 4vw rgba(0, 0, 0, 0.3);
+  text-align: center;
+  backdrop-filter: blur(1.5vw);
+  width: 100%;
+  max-width: 50vw;
+  border: 0.2vw solid rgba(255, 255, 255, 0.3);
+}
+
+/* La tarjeta blanca NO aplica a login */
+.login-screen {
+  background: transparent;
+  padding: 0;
+  box-shadow: none;
+  border: none;
+  width: auto;
+  max-width: none;
+}
+
+/* Login */
+.login-form {
+  margin-top: 2rem;
+}
+
+/* Login: limpiar tarjeta blanca y centrar solo el logo */
+.login-page .login-screen {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  padding: 0;
+  width: var(--login-block-width);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateY(var(--login-offset-top));
+}
+
+.login-page .game-title-text {
+  display: none;
+}
+
+.login-page .game-title {
+  margin-bottom: 3vh;
+}
+
+.login-page .game-title-logo {
+  width: clamp(120px, 14vw, 220px);
+  height: clamp(120px, 14vw, 220px);
+}
+
+/* Login: banner para título e input usando casino buttons-07 */
+.login-page .login-form {
+  width: 100%;
+}
+
+.login-page .login-form h2 {
+  width: 100%;
+  margin: var(--login-title-top) auto var(--login-title-bottom) auto;
+  text-align: center;
+  color: #ffcc80; /* blanco -> naranja suave */
+  text-shadow: 0 0.2vw 0.6vw rgba(0,0,0,0.8);
+  background: url('../images/casino buttons-07.png') no-repeat center / 100% 100%;
+  padding: var(--login-title-pad-v) var(--login-title-pad-h);
+  border-radius: 0.6vw; /* menos redondeo */
+}
+
+.login-page .login-form input#playerName {
+  width: 100%;
+  margin: var(--login-input-top) auto var(--login-input-bottom) auto;
+  display: block;
+  color: #ffd199; /* texto del input ligeramente anaranjado */
+  background: url('../images/casino buttons-07.png') no-repeat center / 100% 100%;
+  border: none;
+  box-shadow: none;
+  height: var(--login-input-height);
+  padding: 0 7vw;
+  font-weight: bold;
+  border-radius: 0vw; /* menos redondeo */
+}
+
+.login-page .login-form input#playerName::placeholder {
+  color: rgba(255, 193, 112, 0.95); /* placeholder naranja claro */
+}
+
+.login-page .login-form input#playerName:focus {
+  outline: none;
+  border: none;
+  box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.35);
+}
+
+/* Login: botón con imagen PLAY */
+.login-page #loginBtn {
+  background: url('../images/play.png') no-repeat center / contain !important;
+  width: 100%;
+  height: var(--login-button-height);
+  border: none;
+  box-shadow: none;
+  margin: 2vh auto 0 auto;
+  display: block;
+  color: transparent;
+  text-shadow: none;
+  font-size: 0; /* ocultar texto accesible */
+  padding: 0;
+}
+
+.login-page #loginBtn:hover {
+  transform: scale(1.02);
+}
+
+/* ========================= */
+/*          MENÚ            */
+/* ========================= */
+/* Quitar tarjeta blanca, ocultar texto, logo centrado grande, back a la izquierda */
+.menu-page .menu-screen {
+  background: none !important; /* eliminar cualquier overlay/transparente */
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0 !important;
+  backdrop-filter: none !important; /* quitar blur responsable del fondo translúcido */
+  border-radius: 0 !important;      /* sin bordes redondeados del panel */
+  max-width: 100vw;
+}
+
+.menu-page .game-title-text {
+  display: none;
+}
+
+.menu-page .menu-header {
+  position: relative;
+  justify-content: center;
+  margin-bottom: 3vh;
+}
+
+.menu-page .menu-header .btn-back {
+  position: absolute;
+  left: 2vw; /* mandar a la izquierda */
+  top: 50%;
+  transform: translateY(-50%);
+  outline: none;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+/* Quitar cualquier hover con blur/burbuja del botón Back */
+.menu-page .menu-header .btn-back:hover,
+.menu-page .menu-header .btn-back:focus {
+  transform: translateY(-50%) scale(1.02);
+  box-shadow: none !important;
+  filter: none !important;
+  outline: none !important;
+}
+
+.menu-page .game-title-logo {
+  width: 16vw;
+  height: 16vw;
+}
+
+/* Banner para Welcome + nombre del jugador */
+.menu-page .player-info {
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 2vh 0 3vh 0;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  transform: translateY(-5vh); /* ajuste: bajar 15% respecto al estado anterior */
+}
+
+.menu-page .player-info p {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36vw; /* más corto */
+  height: 8vh;
+  margin: 0 auto;
+  background: url('../images/casino buttons-07.png') no-repeat center / 100% 100%;
+  color: #ffcc80;
+  font-weight: 800;
+  text-shadow: 0 0.2vw 0.6vw rgba(0,0,0,0.6);
+  border-radius: 0.6vw;
+}
+
+.menu-page .player-info span#playerNameDisplay {
+  color: #ffd873;
+  margin-left: 0.6vw;
+}
+
+/* Botones del menú con imágenes específicas */
+.menu-page .menu-buttons {
+  gap: 1.6vh;
+  transform: translateY(-5vh); /* ajuste: bajar 15% respecto al estado anterior */
+}
+
+.menu-page .menu-buttons .btn {
+  background: none;
+  box-shadow: none;
+  border: none;
+  min-width: 0;
+  width: 36vw; /* acompaña el ancho del banner */
+  height: 9vh;
+  margin: 0 auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  color: transparent;
+  font-size: 0;
+  border-radius: 0;
+}
+
+/* Anular hover con blur muy ancho en menú */
+.menu-page .menu-buttons .btn:hover {
+  transform: scale(1.02);
+  box-shadow: none !important;
+}
+
+.menu-page #playBtn {
+  background-image: url("../images/butons home (1)/butons home/casino bottons home-07.png");
+}
+
+.menu-page #instructionsBtn {
+  background-image: url("../images/butons home (1)/butons home/casino bottons home-22.png");
+}
+
+.menu-page #leaderboardBtn {
+  background-image: url("../images/butons home (1)/butons home/casino bottons home-23.png");
+}
+
+.menu-page #logoutBtn {
+  background-image: url("../images/butons home (1)/butons home/casino bottons home-24.png");
+}
+
+.login-form h2 {
+  color: #333;
+  margin-bottom: 1.5vh;
+  font-size: 2.5vw;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 1.2vw;
+  border: 0.2vw solid #ddd;
+  border-radius: 0.8vw;
+  font-size: 2vw;
+  margin-bottom: 1vh;
+  transition: border-color 0.3s ease;
+}
+
+.login-form input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 1vw rgba(102, 126, 234, 0.3);
+}
+
+.error-message {
+  color: #e74c3c;
+  margin-top: 1vh;
+  font-weight: bold;
+  font-size: 1.5vw;
+}
+
+/* Botones del menú mejorados */
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  margin-top: 2vh;
+  align-items: center;
+}
+
+.menu-buttons .btn {
+  min-width: 25vw;
+  padding: 1.8vh 3vw;
+  font-size: 2.2vw;
+  border-radius: 2.5vw;
+  box-shadow: 0 0.8vh 2.5vh rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.1vw;
+  font-weight: bold;
+}
+
+.menu-buttons .btn:hover {
+  transform: translateY(-0.3vh);
+  box-shadow: 0 1.2vh 3.5vh rgba(0, 0, 0, 0.4);
+}
+
+/* Información del jugador */
+.player-info {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2vw;
+  border-radius: 1.5vw;
+  backdrop-filter: blur(1vw);
+  margin: 2vh 0;
+  text-align: center;
+}
+
+.player-info p {
+  margin: 0;
+  font-size: 2.3vw;
+  color: #fff;
+}
+
+.player-info span {
+  color: #ffd700;
+  font-weight: bold;
+}
+
+/* Game Header */
+.leaderboard-page .game-header {
+  display: flex;
+  justify-content: center; /* centrar logo */
+  align-items: center;
+  margin-bottom: 5vh;
+  flex-wrap: wrap;
+}
+
+/* Botón Back debajo del logo en Leaderboard */
+.leaderboard-page .game-header .btn-back {
+  position: relative;
+  left: 0;
+  top: 0;
+  transform: none;
+  margin-top: 1.5vh;
+  width: var(--lb-back-width, 12vw);
+  height: var(--lb-back-height, 6vw);
+}
+
+/* Game Info */
+.game-info {
+  display: flex;
+  justify-content: space-between;
+  margin: 2vh 0;
+  gap: 1.5vw;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  flex-wrap: wrap;
+}
+
+.info-item {
+  flex: 1;
+  text-align: center;
+  padding: clamp(8px, 1.6vw, 24px);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  border: none;
+  position: relative;
+  overflow: visible;
+  min-height: clamp(90px, 14vh, 180px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 20vw;
+}
+
+/* Background específico para cada panel */
+.info-item:nth-child(1) {
+  background: url('../images/playergame.png') no-repeat center center;
+  background-size: contain; /* evita recortes del arte */
+}
+
+.info-item:nth-child(2) {
+  background: url('../images/spinsgame.png') no-repeat center center;
+  background-size: contain; /* evita recortes del arte */
+}
+
+.info-item:nth-child(3) {
+  background: url('../images/score.png') no-repeat center center;
+  background-size: contain; /* evita recortes del arte */
+}
+
+.info-item:nth-child(4) {
+  background: url('../images/extragame.png') no-repeat center center;
+  background-size: contain; /* evita recortes del arte */
+}
+
+/* Ocultar las etiquetas */
+.info-item .label {
+  display: none;
+}
+
+/* Estilo para los valores sin fondo azul */
+.info-item span:last-child {
+  font-size: clamp(14px, 2.2vw, 28px);
+  font-weight: bold;
+  color: white;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  white-space: nowrap;       /* evita que se parta la línea */
+  overflow: hidden;          /* previene desbordes visibles */
+  text-overflow: ellipsis;   /* indica truncado cuando no hay espacio */
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+}
+
+/* Modal mejorado */
+.modal-content {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7));
+  border: 0.2vw solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(2vw);
+  color: #fff;
+  margin: 5vh auto;
+  padding: 3vw;
+  border-radius: 1.5vw;
+  width: 90%;
+  max-width: 60vw;
+  box-shadow: 0 2vh 4vw rgba(0, 0, 0, 0.6);
+  animation: modalSlideIn 0.3s ease;
+  position: relative;
+}
+
+/* Fondo específico para el modal de instrucciones en el menú */
+.menu-page #instructionsModal .modal-content {
+  background: url('../images/instructions.png') no-repeat center center / cover;
+  color: #fff;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5vw;
+  margin-bottom: 2vh;
+  padding-bottom: 1.5vh;
+  border-bottom: 0.2vw solid rgba(255, 255, 255, 0.2);
+}
+
+.modal-header .game-title-logo {
+  width: 4vw;
+  height: 4vw;
+}
+
+.modal-header h2 {
+  margin: 0;
+  color: #fff;
+  text-shadow: 0.2vw 0.2vw 0.4vw rgba(0, 0, 0, 0.8);
+  font-size: 2.5vw;
+}
+
+/* Animación del modal */
+@keyframes modalSlideIn {
+  from {
+    transform: translateY(-5vh);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Transiciones suaves */
+.modal-content,
+.btn,
+.spin-button,
+.palanca {
+  transition: all 0.3s ease;
+}
+
+/* Efectos hover mejorados */
+.btn:hover,
+.spin-button:hover {
+  transform: translateY(-0.2vw);
+  box-shadow: 0 0.8vh 2.5vh rgba(0, 0, 0, 0.3);
+}
+
+/* Botón de cerrar del modal */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 3vw;
+  font-weight: bold;
+  cursor: pointer;
+  position: absolute;
+  top: 1.5vh;
+  right: 2vw;
+  transition: color 0.3s ease;
+}
+
+.close:hover,
+.close:focus {
+  color: #ffd700;
+  text-shadow: 0 0 1vw rgba(255, 215, 0, 0.5);
+}
+
+/* Instrucciones del juego */
+.instructions h3 {
+  color: #ffd700;
+  text-shadow: 0.2vw 0.2vw 0.4vw rgba(0, 0, 0, 0.8);
+  margin-top: 2vh;
+  margin-bottom: 1vh;
+  font-size: 2vw;
+}
+
+.instructions ul {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1.5vh 2.5vw;
+  border-radius: 1.5vw;
+  border-left: 0.4vw solid #ffd700;
+}
+
+.instructions li {
+  margin-bottom: 0.8vh;
+  padding-left: 1vw;
+  font-size: 1.5vw;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 1.5vw;
+  justify-content: center;
+  margin-top: 2vh;
+  flex-wrap: wrap;
+}
+
+/* Leaderboard */
+.leaderboard-content {
+  width: 100%;
+  max-width: 80vw;
+}
+
+/* Leaderboard: sin fondo blanco, logo grande centrado y sin texto */
+.leaderboard-page .leaderboard-screen {
+  background: none !important;
+  padding: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  max-width: 100vw;
+}
+
+.leaderboard-page .game-title-text {
+  display: none !important;
+}
+
+.leaderboard-page .game-title-logo {
+  width: 16vw;
+  height: 16vw;
+}
+
+/* Leaderboard: ocultar logo y reducir ancho/elevar tabla */
+.leaderboard-page .game-title-logo { display: none !important; }
+.leaderboard-page .game-header { position: relative; justify-content: flex-start; }
+.leaderboard-page .game-header .btn-back {
+  position: absolute;
+  left: var(--lb-back-left, 2vw);   /* posición editable */
+  top: var(--lb-back-top, 50%);
+  transform: translateY(-50%);
+  width: var(--lb-back-width, 10vw);  /* tamaño editable */
+  height: var(--lb-back-height, 5vw);
+}
+.leaderboard-page .leaderboard-content { max-width: 45vw; margin: 0 auto; transform: translateY(-6vh); }
+
+/* Leaderboard mejorado */
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2vh;
+  background: none; /* eliminar rectángulo oscuro */
+  border-radius: 0;
+  overflow: hidden;
+  backdrop-filter: none; /* sin blur */
+  border: none;
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+  padding: 1vh 1vw;
+  text-align: center;
+  font-size: 1.5vw;
+}
+
+.leaderboard-table th {
+  background: rgba(255, 215, 0, 0.2);
+  color: #ffd700;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.1vw;
+  text-shadow: 0.2vw 0.2vw 0.4vw rgba(0, 0, 0, 0.8);
+}
+
+.leaderboard-table tr:hover {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.leaderboard-table tr:first-child {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.leaderboard-table tr:first-child td {
+  color: #ffd873;
+  font-weight: bold;
+  text-shadow: 0.2vw 0.2vw 0.4vw rgba(0, 0, 0, 0.8);
+}
+
+.table-header {
+  display: grid;
+  grid-template-columns: 4vw 1fr 8vw 8vw;
+  background: none; /* sin franja oscura */
+  color: #ffd873;
+  font-weight: bold;
+  padding: 1.5vh 1.5vw;
+}
+
+.table-body {
+  max-height: 50vh; /* alto de ventana para scroll vertical */
+  overflow-y: auto; /* vertical */
+  overflow-x: hidden; /* sin scroll horizontal */
+}
+
+.leaderboard-row {
+  display: grid;
+  grid-template-columns: 4vw 1fr 8vw 8vw;
+  padding: 1vh 1vw;
+  border-bottom: 0.1vw solid #eee;
+  transition: background-color 0.3s ease;
+}
+
+.leaderboard-row:hover {
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+.leaderboard-row.top-3 {
+  background: linear-gradient(45deg, #ffeaa7, #fdcb6e);
+  font-weight: bold;
+}
+
+.rank {
+  text-align: center;
+  font-weight: bold;
+}
+
+.player {
+  padding-left: 1vw;
+}
+
+.score {
+  text-align: center;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.date {
+  text-align: center;
+  font-size: 1.3vw;
+  color: #666;
+}
+
+.empty-leaderboard {
+  text-align: center;
+  padding: 4vh 4vw;
+  color: #666;
+  font-style: italic;
+  font-size: 1.5vw;
+}
+
+.leaderboard-actions {
+  text-align: center;
+}
+
+/* Message Area */
+.message-area {
+  min-height: 6vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2vh 0;
+  font-size: 1.2vw;
+  font-weight: bold;
+  text-align: center;
+}
+
+.message {
+  padding: 1.5vh 2.5vw;
+  border-radius: 1vw;
+  animation: messageSlideIn 0.5s ease;
+  font-size: 1.5vw;
+}
+
+@keyframes messageSlideIn {
+  from {
+    transform: translateY(-2vh);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.message.win {
+  background: linear-gradient(45deg, #00b894, #00a085);
+  color: white;
+  box-shadow: 0 0.5vh 1.5vh rgba(0, 184, 148, 0.4);
+}
+
+.message.bonus {
+  background: linear-gradient(45deg, #fdcb6e, #e17055);
+  color: white;
+  box-shadow: 0 0.5vh 1.5vh rgba(253, 203, 110, 0.4);
+}
+
+.message.lose {
+  background: linear-gradient(45deg, #e74c3c, #c0392b);
+  color: white;
+  box-shadow: 0 0.5vh 1.5vh rgba(231, 76, 60, 0.4);
+}
+
+.message.info {
+  background: linear-gradient(45deg, #74b9ff, #0984e3);
+  color: white;
+  box-shadow: 0 0.5vh 1.5vh rgba(116, 185, 255, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .container {
+    padding: 1.5vw;
+  }
+  
+  .welcome-screen,
+  .login-screen,
+  .menu-screen,
+  .leaderboard-screen {
+    max-width: 60vw;
+    padding: 3vw;
+  }
+  
+  .btn {
+    min-width: 22vw;
+    font-size: 1.8vw;
+  }
+  
+  .game-title-text {
+    font-size: 3.5vw;
+  }
+  
+  .game-title-logo {
+    width: 7vw;
+    height: 7vw;
+  }
+  
+  .info-item {
+    min-width: 22vw;
+    min-height: 10vh;
+  }
+  
+  .info-item span:last-child {
+    font-size: 2.2vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1vw;
+  }
+
+  .game-title {
+    font-size: 2rem;
+    gap: 1vw;
+  }
+  
+  .game-title-text {
+    font-size: 3vw;
+  }
+  
+  .game-title-logo {
+    width: 6vw;
+    height: 6vw;
+  }
+
+  .welcome-screen,
+  .login-screen,
+  .menu-screen,
+  .leaderboard-screen {
+    padding: 2vw;
+    margin: 1vh;
+    max-width: 80vw;
+  }
+
+  .btn {
+    min-width: 25vw;
+    font-size: 1.8vw;
+    padding: 1vh 2vw;
+  }
+  
+  .menu-buttons .btn {
+    min-width: 30vw;
+    font-size: 2vw;
+    padding: 1.5vh 2.5vw;
+  }
+
+  .game-header {
+    flex-direction: column;
+    gap: 1.5vh;
+    text-align: center;
+  }
+
+  .game-info {
+    flex-direction: column;
+    gap: 1vh;
+  }
+  
+  .info-item {
+    min-height: 8vh;
+    min-width: 100%;
+    padding: 1vh 1.5vw;
+  }
+  
+  .info-item span:last-child {
+    font-size: 2.8vw;
+  }
+
+  .table-header,
+  .leaderboard-row {
+    grid-template-columns: 8vw 1fr 15vw 15vw;
+    font-size: 1.3vw;
+  }
+  
+  .leaderboard-table th,
+  .leaderboard-table td {
+    padding: 1vh 1vw;
+    font-size: 1.3vw;
+  }
+
+  .modal-content {
+    margin: 10% auto;
+    padding: 2vw;
+    max-width: 80vw;
+  }
+
+  .modal-buttons {
+    flex-direction: column;
+  }
+
+  .btn-back {
+    width: 8vw;
+    height: 4vw;
+  }
+  
+  .menu-header,
+  .game-header {
+    flex-direction: column;
+    gap: 1.5vh;
+    text-align: center;
+  }
+  
+  .menu-header .btn-back,
+  .game-header .btn-back {
+    margin-left: 0;
+    margin-top: 1vh;
+  }
+  
+  .leaderboard-content {
+    max-width: 90vw;
+  }
+  
+  .login-form h2 {
+    font-size: 3vw;
+  }
+  
+  .login-form input {
+    font-size: 2.5vw;
+    padding: 1vh 1.5vw;
+  }
+  
+  .error-message {
+    font-size: 2vw;
+  }
+  
+  .instructions h3 {
+    font-size: 2.5vw;
+  }
+  
+  .instructions li {
+    font-size: 2vw;
+  }
+  
+  .message {
+    font-size: 2vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0.8vw;
+  }
+  
+  .game-title {
+    font-size: 1.5rem;
+    gap: 0.8vw;
+  }
+  
+  .game-title-text {
+    font-size: 2.5vw;
+  }
+  
+  .game-title-logo {
+    width: 5vw;
+    height: 5vw;
+  }
+
+  .welcome-screen,
+  .login-screen,
+  .menu-screen,
+  .leaderboard-screen {
+    padding: 1.5vw;
+    margin: 0.8vh;
+    max-width: 90vw;
+  }
+  
+  .btn {
+    min-width: 30vw;
+    font-size: 2.2vw;
+    padding: 0.8vh 1.5vw;
+    margin: 0.6vw;
+  }
+  
+  .menu-buttons .btn {
+    min-width: 35vw;
+    font-size: 2.5vw;
+    padding: 1.2vh 2vw;
+  }
+
+  .table-header,
+  .leaderboard-row {
+    grid-template-columns: 10vw 1fr 18vw 18vw;
+    font-size: 1.1vw;
+    padding: 1vh 0.8vw;
+  }
+  
+  .leaderboard-table th,
+  .leaderboard-table td {
+    padding: 0.8vh 0.8vw;
+    font-size: 1.1vw;
+  }
+
+  .date {
+    font-size: 1vw;
+  }
+  
+  .leaderboard-content {
+    max-width: 95vw;
+  }
+  
+  .login-form h2 {
+    font-size: 3.5vw;
+  }
+  
+  .login-form input {
+    font-size: 3vw;
+    padding: 0.8vh 1.2vw;
+  }
+  
+  .error-message {
+    font-size: 2.5vw;
+  }
+  
+  .instructions h3 {
+    font-size: 3vw;
+  }
+  
+  .instructions li {
+    font-size: 2.5vw;
+  }
+  
+  .message {
+    font-size: 2.5vw;
+  }
+  
+  .btn-back {
+    width: 6vw;
+    height: 3vw;
+  }
+  
+  .modal-content {
+    max-width: 90vw;
+    padding: 1.5vw;
+  }
+  
+  .modal-header h2 {
+    font-size: 3vw;
+  }
+  
+  .modal-header .game-title-logo {
+    width: 5vw;
+    height: 5vw;
+  }
+}
+
+@media (max-width: 360px) {
+  .container {
+    padding: 0.6vw;
+  }
+  
+  .game-title-text {
+    font-size: 2.2vw;
+  }
+  
+  .game-title-logo {
+    width: 4.5vw;
+    height: 4.5vw;
+  }
+  
+  .welcome-screen,
+  .login-screen,
+  .menu-screen,
+  .leaderboard-screen {
+    padding: 1.2vw;
+    max-width: 95vw;
+  }
+  
+  .btn {
+    min-width: 35vw;
+    font-size: 2.5vw;
+    padding: 0.6vh 1.2vw;
+  }
+  
+  .menu-buttons .btn {
+    min-width: 40vw;
+    font-size: 2.8vw;
+    padding: 1vh 1.8vw;
+  }
+  
+  .table-header,
+  .leaderboard-row {
+    grid-template-columns: 12vw 1fr 20vw 20vw;
+    font-size: 1vw;
+    padding: 0.8vh 0.6vw;
+  }
+  
+  .leaderboard-table th,
+  .leaderboard-table td {
+    padding: 0.6vh 0.6vw;
+    font-size: 1vw;
+  }
+  
+  .login-form h2 {
+    font-size: 4vw;
+  }
+  
+  .login-form input {
+    font-size: 3.5vw;
+    padding: 0.6vh 1vw;
+  }
+  
+  .error-message {
+    font-size: 3vw;
+  }
+  
+  .instructions h3 {
+    font-size: 3.5vw;
+  }
+  
+  .instructions li {
+    font-size: 3vw;
+  }
+  
+  .message {
+    font-size: 3vw;
+  }
+  
+  .btn-back {
+    width: 5vw;
+    height: 2.5vw;
+  }
+  
+  .modal-content {
+    max-width: 95vw;
+    padding: 1.2vw;
+  }
+  
+  .modal-header h2 {
+    font-size: 3.5vw;
+  }
+  
+  .modal-header .game-title-logo {
+    width: 4.5vw;
+    height: 4.5vw;
+  }
+}
+
+/* Ajustes para pantallas muy pequeñas en altura */
+@media (max-height: 600px) {
+  .container {
+    padding: 1vw;
+  }
+  
+  .welcome-screen,
+  .login-screen,
+  .menu-screen,
+  .leaderboard-screen {
+    padding: 1.5vw;
+    margin: 0.5vh;
+  }
+  
+  .game-title {
+    margin-bottom: 1vh;
+  }
+  
+  .menu-buttons {
+    gap: 1vh;
+    margin-top: 1vh;
+  }
+  
+  .player-info {
+    margin: 1vh 0;
+    padding: 1.5vw;
+  }
+  
+  .game-info {
+    margin: 1vh 0;
+  }
+  
+  .info-item {
+    min-height: 8vh;
+    padding: 1vh 1.5vw;
+  }
+  
+  .leaderboard-table {
+    margin-top: 1vh;
+  }
+  
+  .table-body {
+    max-height: 30vh;
+  }
+}
+
+/* Subir las 4 tablas del juego */
+.game-page .game-info {
+  transform: translateY(-2vh); /* subir más (antes -8vh) */
+}
+
+/* Ajuste vertical manual de los valores de las 4 tablas del juego */
+body.game-page { --game-info-value-shift: 2.2vh; }
+.game-page .info-item span:last-child {
+  display: inline-block;
+  transform: translateY(var(--game-info-value-shift, 2.2vh));
+}
+
+/* ================= Portrait-only responsive (vertical) ================= */
+@media (max-width: 920px) and (orientation: portrait) {
+  /* Login: elementos más grandes y alineados */
+  .login-page {
+    --login-block-width: 78vw;
+    --login-offset-top: 0vh;
+    --login-title-pad-v: 2.2vh;
+    --login-title-pad-h: 4vw;
+    --login-input-height: 8.5vh;
+    --login-button-height: 11.5vh;
+    --login-title-bottom: 6vh;
+    --login-input-bottom: 4vh;
+  }
+  .login-page .game-title-logo { width: 80vw; height: 42vw; }
+  .login-page .login-form h2 { font-size: 5vw; }
+  .login-page .login-form input#playerName { font-size: 4.2vw; padding: 0 12vw; }
+
+  /* Menú: botones grandes y sin botón back en vertical */
+  .menu-page .menu-header .btn-back { display: none !important; }
+  .menu-page .game-title-logo { width: 50vw; height: 32vw; }
+  .menu-page .player-info { transform: none; margin: 2vh 0 1.5vh; }
+  .menu-page .player-info p { width: 82vw; height: 9.5vh; font-size: 4.2vw; }
+  .menu-page .menu-buttons { transform: none; gap: 2vh; }
+  .menu-page .menu-buttons .btn { width: 82vw; height: 10.5vh; }
+
+  /* Leaderboard: tabla legible y botón back arriba a la izquierda */
+  .leaderboard-page .game-header { justify-content: flex-start; }
+  .leaderboard-page .game-header .btn-back {
+    position: fixed;
+    top: 1.5vh;
+    left: 1.5vw;
+    width: 22vw;
+    height: 11vw;
+    z-index: 100;
+  }
+  .leaderboard-page .leaderboard-content { max-width: 88vw; margin: 0 auto; transform: none; }
+  .table-header,
+  .table-body { max-width: 88vw; }
+  .leaderboard-table th,
+  .leaderboard-table td { font-size: 3.5vw; padding: 1vh 1vw; }
+  .table-body { max-height: 56vh; }
+
+  /* Game: back arriba-izquierda más grande y paneles informativos grandes */
+  .game-page .game-header { justify-content: flex-start; }
+  .game-page .game-header .btn-back {
+    position: fixed;
+    top: 1.5vh;
+    left: 1.5vw;
+    width: 22vw;
+    height: 11vw;
+    z-index: 100;
+  }
+  /* Game info en 2x2 más abajo y más grande */
+  .game-page .game-info {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2vh 3vw;
+    transform: translateY(14vh);
+  }
+  .game-page .info-item {
+    min-height: 20vh;
+    min-width: auto;
+  }
+  /* Evitar conflictos con el desplazamiento por variable */
+  body.game-page { --game-info-value-shift: 0vh; }
+  .game-page .info-item span:last-child { font-size: 13vw; transform: none !important; }
+  /* Refuerzo por ID para incrementar especificidad y evitar reglas previas */
+  .game-page #currentPlayer,
+  .game-page #spinsLeft,
+  .game-page #currentScore,
+  .game-page #freeSpins { font-size: 13vw; transform: none !important; }
+}
