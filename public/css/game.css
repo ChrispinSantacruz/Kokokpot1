@@ -4,7 +4,7 @@ body.game-page {
   background-size: cover;
   overflow-x: hidden;
   /* Variables para posicionamiento manual de la palanca */
-  --palanca-right: 15vw;
+  --palanca-right: 10.5vw;
   /* distancia desde el borde derecho */
   --palanca-top: 32%;
   /* posición vertical (50% = centro) */
@@ -129,7 +129,7 @@ body.game-page {
   position: relative;
   display: flex;
   gap: 0vw;
-  /* Sin gap para juntar más los reels */
+  /* Gap eliminado para usar margin negativo */
   justify-content: center;
   align-items: center;
   min-height: clamp(360px, 54vh, 720px);
@@ -163,8 +163,8 @@ body.game-page {
   justify-content: center;
   position: relative;
   flex: 1;
-  margin: 0 -3vw;
-  /* Margin negativo más fuerte para juntar más los reels */
+  margin: 0 -2vw;
+  /* Margin negativo para juntar los reels */
 }
 
 
@@ -265,7 +265,7 @@ body.game-page {
     max-width: 156vw;
     /* 20% más grande: 130vw * 1.2 = 156vw */
     gap: 0vw;
-    /* Sin gap para juntar más los reels */
+    /* Gap eliminado para usar margin negativo */
     min-height: clamp(480px, 66vh, 840px);
     /* 20% más grande: 400px * 1.2 = 480px, 55vh * 1.2 = 66vh, 700px * 1.2 = 840px */
   }
@@ -274,6 +274,8 @@ body.game-page {
     min-width: clamp(160px, 18vw, 360px);
     /* Reducido proporcionalmente */
     min-height: clamp(200px, 26vh, 420px);
+    margin: 0 -2vw;
+    /* Margin negativo para juntar los reels */
   }
 
   .symbol {
@@ -485,12 +487,15 @@ body.game-page {
   .reels {
     max-width: min(92vw, 1100px);
     padding: clamp(12px, 3vw, 40px);
-    gap: 1.5vw;
+    gap: 0vw;
+    /* Gap eliminado para usar margin negativo */
   }
 
   .reel {
     min-width: 12vw;
     min-height: 18vh;
+    margin: 0 -2vw;
+    /* Margin negativo para juntar los reels */
   }
 
   .palanca-container {
@@ -517,7 +522,8 @@ body.game-page {
   .reels {
     max-width: 94vw;
     padding: 2.5vw;
-    gap: 1vw;
+    gap: 0vw;
+    /* Gap eliminado para usar margin negativo */
     min-height: 20vh;
   }
 
@@ -525,6 +531,8 @@ body.game-page {
     min-width: 15vw;
     min-height: 12vh;
     padding: 1.5vw;
+    margin: 0 -2vw;
+    /* Margin negativo para juntar los reels */
   }
 
   .spin-button {
@@ -567,7 +575,8 @@ body.game-page {
   .reels {
     max-width: 96vw;
     padding: 2vw;
-    gap: 0.8vw;
+    gap: 0vw;
+    /* Gap eliminado para usar margin negativo */
     min-height: 18vh;
     flex-direction: column;
     align-items: center;
@@ -577,6 +586,8 @@ body.game-page {
     min-width: 20vw;
     min-height: 10vh;
     padding: 1vw;
+    margin: 0 -2vw;
+    /* Margin negativo para juntar los reels */
   }
 
   .spin-button {

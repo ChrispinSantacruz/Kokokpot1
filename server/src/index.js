@@ -62,7 +62,7 @@ app.post('/api/auth/login', async (req, res) => {
     if (!username) return res.status(400).json({ error: 'username is required' })
     const clean = String(username).trim().slice(0, 40)
     console.log('🧹 Cleaned username:', clean)
-    
+
     let user = await User.findOne({ username: clean })
     if (!user) {
       console.log('🆕 Creating new user:', clean)
@@ -71,7 +71,7 @@ app.post('/api/auth/login', async (req, res) => {
     } else {
       console.log('👤 Existing user found:', { username: user.username, spinsLeft: user.spinsLeft, currentScore: user.currentScore, locked: user.locked })
     }
-    
+
     res.json({
       username: user.username,
       locked: user.locked,
@@ -115,21 +115,21 @@ app.post('/api/progress', async (req, res) => {
   try {
     const { username, spinsLeft, currentScore } = req.body
     console.log('📝 Parsed data:', { username, spinsLeft, currentScore, types: { username: typeof username, spinsLeft: typeof spinsLeft, currentScore: typeof currentScore } })
-    
+
     if (!username || typeof spinsLeft !== 'number' || typeof currentScore !== 'number') {
       console.log('❌ Validation failed:', { username: !!username, spinsLeftType: typeof spinsLeft, currentScoreType: typeof currentScore })
       return res.status(400).json({ error: 'invalid_payload' })
     }
-    
+
     console.log('🔍 Looking for user:', username)
     const user = await User.findOne({ username })
     if (!user) {
       console.log('❌ User not found:', username)
       return res.status(404).json({ error: 'user_not_found' })
     }
-    
+
     console.log('✅ User found:', { username: user.username, currentSpinsLeft: user.spinsLeft, currentScore: user.currentScore })
-    
+
     if (user.locked) {
       console.log('🔒 User is locked:', username)
       return res.status(403).json({ error: 'user_locked' })
@@ -137,21 +137,21 @@ app.post('/api/progress', async (req, res) => {
 
     const oldSpinsLeft = user.spinsLeft
     const oldCurrentScore = user.currentScore
-    
+
     user.spinsLeft = Math.max(0, Math.min(30, spinsLeft))
     user.currentScore = Math.max(0, currentScore)
     user.updatedAt = new Date()
-    
-    console.log('💾 Saving user with new values:', { 
-      oldSpinsLeft, 
-      newSpinsLeft: user.spinsLeft, 
-      oldCurrentScore, 
-      newCurrentScore: user.currentScore 
+
+    console.log('💾 Saving user with new values:', {
+      oldSpinsLeft,
+      newSpinsLeft: user.spinsLeft,
+      oldCurrentScore,
+      newCurrentScore: user.currentScore
     })
-    
+
     await user.save()
     console.log('✅ User saved successfully to MongoDB')
-    
+
     res.json({ ok: true })
   } catch (e) {
     console.error('❌ Progress error:', e)
@@ -169,20 +169,20 @@ app.get('/api/leaderboard', async (_req, res) => {
       { $limit: 100 },
       { $project: { _id: 0, username: 1, score: 1, createdAt: 1, type: { $literal: 'final' } } },
     ])
-    
+
     // Obtener scores actuales de usuarios activos
-    const activeUsers = await User.find({ 
-      locked: false, 
-      currentScore: { $gt: 0 } 
+    const activeUsers = await User.find({
+      locked: false,
+      currentScore: { $gt: 0 }
     }).select('username currentScore updatedAt')
-    
+
     const activeScores = activeUsers.map(user => ({
       username: user.username,
       score: user.currentScore,
       createdAt: user.updatedAt,
       type: 'active'
     }))
-    
+
     // Combinar y ordenar todos los scores
     const allScores = [...finalScores, ...activeScores]
     allScores.sort((a, b) => {
@@ -191,12 +191,12 @@ app.get('/api/leaderboard', async (_req, res) => {
       }
       return new Date(b.createdAt) - new Date(a.createdAt)
     })
-    
+
     // Tomar solo los top 100
     const topScores = allScores.slice(0, 100)
-    
+
     console.log(`📊 Leaderboard: ${finalScores.length} final scores, ${activeScores.length} active scores, total: ${topScores.length}`)
-    
+
     res.json(topScores)
   } catch (e) {
     console.error('❌ Leaderboard error:', e)
@@ -209,8 +209,8 @@ app.get('/api/debug/users', async (req, res) => {
   try {
     const users = await User.find({}).select('username spinsLeft currentScore locked bestScore updatedAt')
     const scores = await Score.find({}).select('username score spins createdAt')
-    res.json({ 
-      users: users, 
+    res.json({
+      users: users,
       scores: scores,
       totalUsers: users.length,
       totalScores: scores.length
@@ -227,40 +227,40 @@ app.get('/api/test', (req, res) => {
   res.json({ message: 'Server is working!', timestamp: new Date().toISOString() })
 })
 
-// DESPUÉS de las APIs, servir archivos estáticos
-app.use(express.static(path.join(__dirname, '..', '..')))
+// DESPUÉS de las APIs, servir archivos estáticos desde la carpeta public
+app.use(express.static(path.join(__dirname, '..', '..', 'public')))
 
 // FRONTEND ROUTES
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', '..', 'index.html'))
+  res.sendFile(path.join(__dirname, '..', '..', 'public', 'index.html'))
 })
 
 app.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', '..', 'login.html'))
+  res.sendFile(path.join(__dirname, '..', '..', 'public', 'login.html'))
 })
 
 app.get('/menu', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', '..', 'menu.html'))
+  res.sendFile(path.join(__dirname, '..', '..', 'public', 'menu.html'))
 })
 
 app.get('/game', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', '..', 'game.html'))
+  res.sendFile(path.join(__dirname, '..', '..', 'public', 'game.html'))
 })
 
 app.get('/leaderboard', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', '..', 'leaderboard.html'))
+  res.sendFile(path.join(__dirname, '..', '..', 'public', 'leaderboard.html'))
 })
 
 // Catch-all
 app.get('*', (req, res) => {
   console.log(`Frontend route requested: ${req.path}`)
-  res.sendFile(path.join(__dirname, '..', '..', 'index.html'))
+  res.sendFile(path.join(__dirname, '..', '..', 'public', 'index.html'))
 })
 
 const port = process.env.PORT || 8081
 app.listen(port, () => {
   console.log(`🚀 Server running on http://localhost:${port}`)
-  console.log(`📁 Static files served from: ${path.join(__dirname, '..', '..')}`)
+  console.log(`📁 Static files served from: ${path.join(__dirname, '..', '..', 'public')}`)
   console.log(`🎮 Frontend available at: http://localhost:${port}`)
 })
 
