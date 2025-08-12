@@ -38,7 +38,8 @@ body.leaderboard-page {
   /* ancho total del bloque (h2 + input + botón) */
   --login-block-width: 32vw;
   /* desplazamiento superior del bloque en la pantalla */
-  --login-offset-top: 0vh;
+  --login-offset-top: -5vh;
+  /* subir todo el bloque */
   /* padding interno del banner del título */
   --login-title-pad-v: 2vh;
   --login-title-pad-h: 2vw;
@@ -46,11 +47,16 @@ body.leaderboard-page {
   --login-input-height: 6.5vh;
   --login-button-height: 9vh;
   /* offsets verticales finos para ubicar h2 e input en líneas específicas */
-  --login-after-logo-space: 1vh;   /* espacio bajo el logo */
-  --login-title-top: 0.2vh;          /* distancia desde el logo hasta el h2 */
-  --login-title-bottom: 7vh;     /* espacio bajo el h2 */
-  --login-input-top: 2vh;          /* espacio sobre el input */
-  --login-input-bottom: 5vh;       /* espacio bajo el input */
+  --login-after-logo-space: 1vh;
+  /* espacio bajo el logo */
+  --login-title-top: -2vh;
+  /* distancia desde el logo hasta el h2 (más cerca) */
+  --login-title-bottom: 5vh;
+  /* espacio bajo el h2 (menos espacio) */
+  --login-input-top: 1vh;
+  /* espacio sobre el input (menos espacio) */
+  --login-input-bottom: 4vh;
+  /* espacio bajo el input (menos espacio) */
 }
 
 .container {
@@ -137,6 +143,7 @@ body.leaderboard-page {
   from {
     text-shadow: 0.2vw 0.2vw 0.4vw rgba(0, 0, 0, 0.5), 0 0 1vw rgba(255, 255, 255, 0.3);
   }
+
   to {
     text-shadow: 0.2vw 0.2vw 0.4vw rgba(0, 0, 0, 0.5), 0 0 2vw rgba(255, 255, 255, 0.6);
   }
@@ -264,29 +271,47 @@ body.leaderboard-page {
   width: 100%;
   margin: var(--login-title-top) auto var(--login-title-bottom) auto;
   text-align: center;
-  color: #ffcc80; /* blanco -> naranja suave */
-  text-shadow: 0 0.2vw 0.6vw rgba(0,0,0,0.8);
-  background: url('../images/casino buttons-07.png') no-repeat center / 100% 100%;
+  color: rgba(255, 255, 255, 0.7);
+  /* texto más opaco y blanco */
+  text-shadow: 0 0.2vw 0.6vw rgba(0, 0, 0, 0.8);
+  background: none;
+  /* quitar background */
   padding: var(--login-title-pad-v) var(--login-title-pad-h);
-  border-radius: 0.6vw; /* menos redondeo */
+  border-radius: 0.6vw;
+  /* menos redondeo */
+  font-size: 1.8vw;
+  /* texto más pequeño */
 }
 
 .login-page .login-form input#playerName {
   width: 100%;
   margin: var(--login-input-top) auto var(--login-input-bottom) auto;
   display: block;
-  color: #ffd199; /* texto del input ligeramente anaranjado */
-  background: url('../images/casino buttons-07.png') no-repeat center / 100% 100%;
+  color: rgba(255, 255, 255, 0.7);
+  /* texto más opaco y blanco */
+  background: url('../images/casino buttons-08.png') no-repeat center / 100% 100%;
   border: none;
   box-shadow: none;
   height: var(--login-input-height);
   padding: 0 7vw;
   font-weight: bold;
-  border-radius: 0vw; /* menos redondeo */
+  border-radius: 0vw;
+  /* menos redondeo */
+  font-size: 1.6vw;
+  /* texto más pequeño */
+}
+
+/* Mantener background cuando el input tiene foco */
+.login-page .login-form input#playerName:focus {
+  outline: none;
+  border: none;
+  box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.35);
+  background: url('../images/casino buttons-08.png') no-repeat center / 100% 100%;
 }
 
 .login-page .login-form input#playerName::placeholder {
-  color: rgba(255, 193, 112, 0.95); /* placeholder naranja claro */
+  color: rgba(255, 255, 255, 0.5);
+  /* placeholder blanco opaco */
 }
 
 .login-page .login-form input#playerName:focus {
@@ -306,7 +331,8 @@ body.leaderboard-page {
   display: block;
   color: transparent;
   text-shadow: none;
-  font-size: 0; /* ocultar texto accesible */
+  font-size: 0;
+  /* ocultar texto accesible */
   padding: 0;
 }
 
@@ -319,12 +345,15 @@ body.leaderboard-page {
 /* ========================= */
 /* Quitar tarjeta blanca, ocultar texto, logo centrado grande, back a la izquierda */
 .menu-page .menu-screen {
-  background: none !important; /* eliminar cualquier overlay/transparente */
+  background: none !important;
+  /* eliminar cualquier overlay/transparente */
   box-shadow: none !important;
   border: none !important;
   padding: 0 !important;
-  backdrop-filter: none !important; /* quitar blur responsable del fondo translúcido */
-  border-radius: 0 !important;      /* sin bordes redondeados del panel */
+  backdrop-filter: none !important;
+  /* quitar blur responsable del fondo translúcido */
+  border-radius: 0 !important;
+  /* sin bordes redondeados del panel */
   max-width: 100vw;
 }
 
@@ -340,7 +369,8 @@ body.leaderboard-page {
 
 .menu-page .menu-header .btn-back {
   position: absolute;
-  left: 2vw; /* mandar a la izquierda */
+  left: 2vw;
+  /* mandar a la izquierda */
   top: 50%;
   transform: translateY(-50%);
   outline: none;
@@ -358,6 +388,11 @@ body.leaderboard-page {
   outline: none !important;
 }
 
+/* Ocultar botón back en el menú */
+.menu-page .menu-header .btn-back {
+  display: none !important;
+}
+
 .menu-page .game-title-logo {
   width: 16vw;
   height: 16vw;
@@ -372,21 +407,26 @@ body.leaderboard-page {
   backdrop-filter: none !important;
   box-shadow: none !important;
   border-radius: 0 !important;
-  transform: translateY(-5vh); /* ajuste: bajar 15% respecto al estado anterior */
+  transform: translateY(-5vh);
+  /* ajuste: bajar 15% respecto al estado anterior */
 }
 
 .menu-page .player-info p {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36vw; /* más corto */
-  height: 8vh;
+  width: auto;
+  /* ancho automático */
+  height: auto;
   margin: 0 auto;
-  background: url('../images/casino buttons-07.png') no-repeat center / 100% 100%;
-  color: #ffcc80;
-  font-weight: 800;
-  text-shadow: 0 0.2vw 0.6vw rgba(0,0,0,0.6);
-  border-radius: 0.6vw;
+  background: none;
+  /* quitar background */
+  color: rgba(255, 255, 255, 0.9);
+  /* texto blanco opaco */
+  font-weight: 600;
+  text-shadow: 0 0.2vw 0.6vw rgba(0, 0, 0, 0.8);
+  border-radius: 0;
+  font-size: 2.5vw;
 }
 
 .menu-page .player-info span#playerNameDisplay {
@@ -397,7 +437,8 @@ body.leaderboard-page {
 /* Botones del menú con imágenes específicas */
 .menu-page .menu-buttons {
   gap: 1.6vh;
-  transform: translateY(-5vh); /* ajuste: bajar 15% respecto al estado anterior */
+  transform: translateY(-5vh);
+  /* ajuste: bajar 15% respecto al estado anterior */
 }
 
 .menu-page .menu-buttons .btn {
@@ -405,7 +446,8 @@ body.leaderboard-page {
   box-shadow: none;
   border: none;
   min-width: 0;
-  width: 36vw; /* acompaña el ancho del banner */
+  width: 36vw;
+  /* acompaña el ancho del banner */
   height: 9vh;
   margin: 0 auto;
   background-repeat: no-repeat;
@@ -517,7 +559,8 @@ body.leaderboard-page {
 /* Game Header */
 .leaderboard-page .game-header {
   display: flex;
-  justify-content: center; /* centrar logo */
+  justify-content: center;
+  /* centrar logo */
   align-items: center;
   margin-bottom: 5vh;
   flex-wrap: wrap;
@@ -568,22 +611,26 @@ body.leaderboard-page {
 /* Background específico para cada panel */
 .info-item:nth-child(1) {
   background: url('../images/playergame.png') no-repeat center center;
-  background-size: contain; /* evita recortes del arte */
+  background-size: contain;
+  /* evita recortes del arte */
 }
 
 .info-item:nth-child(2) {
   background: url('../images/spinsgame.png') no-repeat center center;
-  background-size: contain; /* evita recortes del arte */
+  background-size: contain;
+  /* evita recortes del arte */
 }
 
 .info-item:nth-child(3) {
   background: url('../images/score.png') no-repeat center center;
-  background-size: contain; /* evita recortes del arte */
+  background-size: contain;
+  /* evita recortes del arte */
 }
 
 .info-item:nth-child(4) {
   background: url('../images/extragame.png') no-repeat center center;
-  background-size: contain; /* evita recortes del arte */
+  background-size: contain;
+  /* evita recortes del arte */
 }
 
 /* Ocultar las etiquetas */
@@ -599,9 +646,12 @@ body.leaderboard-page {
   background: transparent;
   padding: 0;
   border-radius: 0;
-  white-space: nowrap;       /* evita que se parta la línea */
-  overflow: hidden;          /* previene desbordes visibles */
-  text-overflow: ellipsis;   /* indica truncado cuando no hay espacio */
+  white-space: nowrap;
+  /* evita que se parta la línea */
+  overflow: hidden;
+  /* previene desbordes visibles */
+  text-overflow: ellipsis;
+  /* indica truncado cuando no hay espacio */
 }
 
 /* Modal */
@@ -667,6 +717,7 @@ body.leaderboard-page {
     transform: translateY(-5vh);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;
@@ -763,27 +814,43 @@ body.leaderboard-page {
 }
 
 /* Leaderboard: ocultar logo y reducir ancho/elevar tabla */
-.leaderboard-page .game-title-logo { display: none !important; }
-.leaderboard-page .game-header { position: relative; justify-content: flex-start; }
+.leaderboard-page .game-title-logo {
+  display: none !important;
+}
+
+.leaderboard-page .game-header {
+  position: relative;
+  justify-content: flex-start;
+}
+
 .leaderboard-page .game-header .btn-back {
   position: absolute;
-  left: var(--lb-back-left, 2vw);   /* posición editable */
+  left: var(--lb-back-left, 9vw);
+  /* posición editable - 25% a la derecha (2vw + 25vw) */
   top: var(--lb-back-top, 50%);
   transform: translateY(-50%);
-  width: var(--lb-back-width, 10vw);  /* tamaño editable */
+  width: var(--lb-back-width, 10vw);
+  /* tamaño editable */
   height: var(--lb-back-height, 5vw);
 }
-.leaderboard-page .leaderboard-content { max-width: 45vw; margin: 0 auto; transform: translateY(-6vh); }
+
+.leaderboard-page .leaderboard-content {
+  max-width: 45vw;
+  margin: 0 auto;
+  transform: translateY(-6vh);
+}
 
 /* Leaderboard mejorado */
 .leaderboard-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 2vh;
-  background: none; /* eliminar rectángulo oscuro */
+  background: none;
+  /* eliminar rectángulo oscuro */
   border-radius: 0;
   overflow: hidden;
-  backdrop-filter: none; /* sin blur */
+  backdrop-filter: none;
+  /* sin blur */
   border: none;
 }
 
@@ -820,16 +887,20 @@ body.leaderboard-page {
 .table-header {
   display: grid;
   grid-template-columns: 4vw 1fr 8vw 8vw;
-  background: none; /* sin franja oscura */
+  background: none;
+  /* sin franja oscura */
   color: #ffd873;
   font-weight: bold;
   padding: 1.5vh 1.5vw;
 }
 
 .table-body {
-  max-height: 50vh; /* alto de ventana para scroll vertical */
-  overflow-y: auto; /* vertical */
-  overflow-x: hidden; /* sin scroll horizontal */
+  max-height: 50vh;
+  /* alto de ventana para scroll vertical */
+  overflow-y: auto;
+  /* vertical */
+  overflow-x: hidden;
+  /* sin scroll horizontal */
 }
 
 .leaderboard-row {
@@ -906,6 +977,7 @@ body.leaderboard-page {
     transform: translateY(-2vh);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;
@@ -941,7 +1013,7 @@ body.leaderboard-page {
   .container {
     padding: 1.5vw;
   }
-  
+
   .welcome-screen,
   .login-screen,
   .menu-screen,
@@ -949,26 +1021,26 @@ body.leaderboard-page {
     max-width: 60vw;
     padding: 3vw;
   }
-  
+
   .btn {
     min-width: 22vw;
     font-size: 1.8vw;
   }
-  
+
   .game-title-text {
     font-size: 3.5vw;
   }
-  
+
   .game-title-logo {
     width: 7vw;
     height: 7vw;
   }
-  
+
   .info-item {
     min-width: 22vw;
     min-height: 10vh;
   }
-  
+
   .info-item span:last-child {
     font-size: 2.2vw;
   }
@@ -983,11 +1055,11 @@ body.leaderboard-page {
     font-size: 2rem;
     gap: 1vw;
   }
-  
+
   .game-title-text {
     font-size: 3vw;
   }
-  
+
   .game-title-logo {
     width: 6vw;
     height: 6vw;
@@ -1007,7 +1079,7 @@ body.leaderboard-page {
     font-size: 1.8vw;
     padding: 1vh 2vw;
   }
-  
+
   .menu-buttons .btn {
     min-width: 30vw;
     font-size: 2vw;
@@ -1024,13 +1096,13 @@ body.leaderboard-page {
     flex-direction: column;
     gap: 1vh;
   }
-  
+
   .info-item {
     min-height: 8vh;
     min-width: 100%;
     padding: 1vh 1.5vw;
   }
-  
+
   .info-item span:last-child {
     font-size: 2.8vw;
   }
@@ -1040,7 +1112,7 @@ body.leaderboard-page {
     grid-template-columns: 8vw 1fr 15vw 15vw;
     font-size: 1.3vw;
   }
-  
+
   .leaderboard-table th,
   .leaderboard-table td {
     padding: 1vh 1vw;
@@ -1061,45 +1133,45 @@ body.leaderboard-page {
     width: 8vw;
     height: 4vw;
   }
-  
+
   .menu-header,
   .game-header {
     flex-direction: column;
     gap: 1.5vh;
     text-align: center;
   }
-  
+
   .menu-header .btn-back,
   .game-header .btn-back {
     margin-left: 0;
     margin-top: 1vh;
   }
-  
+
   .leaderboard-content {
     max-width: 90vw;
   }
-  
+
   .login-form h2 {
     font-size: 3vw;
   }
-  
+
   .login-form input {
     font-size: 2.5vw;
     padding: 1vh 1.5vw;
   }
-  
+
   .error-message {
     font-size: 2vw;
   }
-  
+
   .instructions h3 {
     font-size: 2.5vw;
   }
-  
+
   .instructions li {
     font-size: 2vw;
   }
-  
+
   .message {
     font-size: 2vw;
   }
@@ -1109,16 +1181,16 @@ body.leaderboard-page {
   .container {
     padding: 0.8vw;
   }
-  
+
   .game-title {
     font-size: 1.5rem;
     gap: 0.8vw;
   }
-  
+
   .game-title-text {
     font-size: 2.5vw;
   }
-  
+
   .game-title-logo {
     width: 5vw;
     height: 5vw;
@@ -1132,14 +1204,14 @@ body.leaderboard-page {
     margin: 0.8vh;
     max-width: 90vw;
   }
-  
+
   .btn {
     min-width: 30vw;
     font-size: 2.2vw;
     padding: 0.8vh 1.5vw;
     margin: 0.6vw;
   }
-  
+
   .menu-buttons .btn {
     min-width: 35vw;
     font-size: 2.5vw;
@@ -1152,7 +1224,7 @@ body.leaderboard-page {
     font-size: 1.1vw;
     padding: 1vh 0.8vw;
   }
-  
+
   .leaderboard-table th,
   .leaderboard-table td {
     padding: 0.8vh 0.8vw;
@@ -1162,50 +1234,50 @@ body.leaderboard-page {
   .date {
     font-size: 1vw;
   }
-  
+
   .leaderboard-content {
     max-width: 95vw;
   }
-  
+
   .login-form h2 {
     font-size: 3.5vw;
   }
-  
+
   .login-form input {
     font-size: 3vw;
     padding: 0.8vh 1.2vw;
   }
-  
+
   .error-message {
     font-size: 2.5vw;
   }
-  
+
   .instructions h3 {
     font-size: 3vw;
   }
-  
+
   .instructions li {
     font-size: 2.5vw;
   }
-  
+
   .message {
     font-size: 2.5vw;
   }
-  
+
   .btn-back {
     width: 6vw;
     height: 3vw;
   }
-  
+
   .modal-content {
     max-width: 90vw;
     padding: 1.5vw;
   }
-  
+
   .modal-header h2 {
     font-size: 3vw;
   }
-  
+
   .modal-header .game-title-logo {
     width: 5vw;
     height: 5vw;
@@ -1216,16 +1288,16 @@ body.leaderboard-page {
   .container {
     padding: 0.6vw;
   }
-  
+
   .game-title-text {
     font-size: 2.2vw;
   }
-  
+
   .game-title-logo {
     width: 4.5vw;
     height: 4.5vw;
   }
-  
+
   .welcome-screen,
   .login-screen,
   .menu-screen,
@@ -1233,71 +1305,71 @@ body.leaderboard-page {
     padding: 1.2vw;
     max-width: 95vw;
   }
-  
+
   .btn {
     min-width: 35vw;
     font-size: 2.5vw;
     padding: 0.6vh 1.2vw;
   }
-  
+
   .menu-buttons .btn {
     min-width: 40vw;
     font-size: 2.8vw;
     padding: 1vh 1.8vw;
   }
-  
+
   .table-header,
   .leaderboard-row {
     grid-template-columns: 12vw 1fr 20vw 20vw;
     font-size: 1vw;
     padding: 0.8vh 0.6vw;
   }
-  
+
   .leaderboard-table th,
   .leaderboard-table td {
     padding: 0.6vh 0.6vw;
     font-size: 1vw;
   }
-  
+
   .login-form h2 {
     font-size: 4vw;
   }
-  
+
   .login-form input {
     font-size: 3.5vw;
     padding: 0.6vh 1vw;
   }
-  
+
   .error-message {
     font-size: 3vw;
   }
-  
+
   .instructions h3 {
     font-size: 3.5vw;
   }
-  
+
   .instructions li {
     font-size: 3vw;
   }
-  
+
   .message {
     font-size: 3vw;
   }
-  
+
   .btn-back {
     width: 5vw;
     height: 2.5vw;
   }
-  
+
   .modal-content {
     max-width: 95vw;
     padding: 1.2vw;
   }
-  
+
   .modal-header h2 {
     font-size: 3.5vw;
   }
-  
+
   .modal-header .game-title-logo {
     width: 4.5vw;
     height: 4.5vw;
@@ -1309,7 +1381,7 @@ body.leaderboard-page {
   .container {
     padding: 1vw;
   }
-  
+
   .welcome-screen,
   .login-screen,
   .menu-screen,
@@ -1317,34 +1389,34 @@ body.leaderboard-page {
     padding: 1.5vw;
     margin: 0.5vh;
   }
-  
+
   .game-title {
     margin-bottom: 1vh;
   }
-  
+
   .menu-buttons {
     gap: 1vh;
     margin-top: 1vh;
   }
-  
+
   .player-info {
     margin: 1vh 0;
     padding: 1.5vw;
   }
-  
+
   .game-info {
     margin: 1vh 0;
   }
-  
+
   .info-item {
     min-height: 8vh;
     padding: 1vh 1.5vw;
   }
-  
+
   .leaderboard-table {
     margin-top: 1vh;
   }
-  
+
   .table-body {
     max-height: 30vh;
   }
@@ -1352,11 +1424,15 @@ body.leaderboard-page {
 
 /* Subir las 4 tablas del juego */
 .game-page .game-info {
-  transform: translateY(-2vh); /* subir más (antes -8vh) */
+  transform: translateY(-5.4vh);
+  /* bajar un 10% desde -6vh a -5.4vh */
 }
 
 /* Ajuste vertical manual de los valores de las 4 tablas del juego */
-body.game-page { --game-info-value-shift: 2.2vh; }
+body.game-page {
+  --game-info-value-shift: 2.2vh;
+}
+
 .game-page .info-item span:last-child {
   display: inline-block;
   transform: translateY(var(--game-info-value-shift, 2.2vh));
@@ -1364,6 +1440,7 @@ body.game-page { --game-info-value-shift: 2.2vh; }
 
 /* ================= Portrait-only responsive (vertical) ================= */
 @media (max-width: 920px) and (orientation: portrait) {
+
   /* Login: elementos más grandes y alineados */
   .login-page {
     --login-block-width: 78vw;
@@ -1375,20 +1452,57 @@ body.game-page { --game-info-value-shift: 2.2vh; }
     --login-title-bottom: 6vh;
     --login-input-bottom: 4vh;
   }
-  .login-page .game-title-logo { width: 80vw; height: 42vw; }
-  .login-page .login-form h2 { font-size: 5vw; }
-  .login-page .login-form input#playerName { font-size: 4.2vw; padding: 0 12vw; }
+
+  .login-page .game-title-logo {
+    width: 80vw;
+    height: 42vw;
+  }
+
+  .login-page .login-form h2 {
+    font-size: 5vw;
+  }
+
+  .login-page .login-form input#playerName {
+    font-size: 4.2vw;
+    padding: 0 12vw;
+  }
 
   /* Menú: botones grandes y sin botón back en vertical */
-  .menu-page .menu-header .btn-back { display: none !important; }
-  .menu-page .game-title-logo { width: 50vw; height: 32vw; }
-  .menu-page .player-info { transform: none; margin: 2vh 0 1.5vh; }
-  .menu-page .player-info p { width: 82vw; height: 9.5vh; font-size: 4.2vw; }
-  .menu-page .menu-buttons { transform: none; gap: 2vh; }
-  .menu-page .menu-buttons .btn { width: 82vw; height: 10.5vh; }
+  .menu-page .menu-header .btn-back {
+    display: none !important;
+  }
+
+  .menu-page .game-title-logo {
+    width: 50vw;
+    height: 32vw;
+  }
+
+  .menu-page .player-info {
+    transform: none;
+    margin: 2vh 0 1.5vh;
+  }
+
+  .menu-page .player-info p {
+    width: 82vw;
+    height: 9.5vh;
+    font-size: 4.2vw;
+  }
+
+  .menu-page .menu-buttons {
+    transform: none;
+    gap: 2vh;
+  }
+
+  .menu-page .menu-buttons .btn {
+    width: 82vw;
+    height: 10.5vh;
+  }
 
   /* Leaderboard: tabla legible y botón back arriba a la izquierda */
-  .leaderboard-page .game-header { justify-content: flex-start; }
+  .leaderboard-page .game-header {
+    justify-content: flex-start;
+  }
+
   .leaderboard-page .game-header .btn-back {
     position: fixed;
     top: 1.5vh;
@@ -1397,15 +1511,33 @@ body.game-page { --game-info-value-shift: 2.2vh; }
     height: 11vw;
     z-index: 100;
   }
-  .leaderboard-page .leaderboard-content { max-width: 88vw; margin: 0 auto; transform: none; }
+
+  .leaderboard-page .leaderboard-content {
+    max-width: 88vw;
+    margin: 0 auto;
+    transform: none;
+  }
+
   .table-header,
-  .table-body { max-width: 88vw; }
+  .table-body {
+    max-width: 88vw;
+  }
+
   .leaderboard-table th,
-  .leaderboard-table td { font-size: 3.5vw; padding: 1vh 1vw; }
-  .table-body { max-height: 56vh; }
+  .leaderboard-table td {
+    font-size: 3.5vw;
+    padding: 1vh 1vw;
+  }
+
+  .table-body {
+    max-height: 56vh;
+  }
 
   /* Game: back arriba-izquierda más grande y paneles informativos grandes */
-  .game-page .game-header { justify-content: flex-start; }
+  .game-page .game-header {
+    justify-content: flex-start;
+  }
+
   .game-page .game-header .btn-back {
     position: fixed;
     top: 1.5vh;
@@ -1414,6 +1546,7 @@ body.game-page { --game-info-value-shift: 2.2vh; }
     height: 11vw;
     z-index: 100;
   }
+
   /* Game info en 2x2 más abajo y más grande */
   .game-page .game-info {
     display: grid !important;
@@ -1421,16 +1554,28 @@ body.game-page { --game-info-value-shift: 2.2vh; }
     grid-gap: 2vh 3vw;
     transform: translateY(14vh);
   }
+
   .game-page .info-item {
     min-height: 20vh;
     min-width: auto;
   }
+
   /* Evitar conflictos con el desplazamiento por variable */
-  body.game-page { --game-info-value-shift: 0vh; }
-  .game-page .info-item span:last-child { font-size: 13vw; transform: none !important; }
+  body.game-page {
+    --game-info-value-shift: 0vh;
+  }
+
+  .game-page .info-item span:last-child {
+    font-size: 13vw;
+    transform: none !important;
+  }
+
   /* Refuerzo por ID para incrementar especificidad y evitar reglas previas */
   .game-page #currentPlayer,
   .game-page #spinsLeft,
   .game-page #currentScore,
-  .game-page #freeSpins { font-size: 13vw; transform: none !important; }
+  .game-page #freeSpins {
+    font-size: 13vw;
+    transform: none !important;
+  }
 }

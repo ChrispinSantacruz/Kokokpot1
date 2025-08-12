@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,12 +9,11 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/game.css">
 </head>
+
 <body class="game-page">
     <div class="container">
         <div class="game-screen">
-            <div class="game-header">
-                <button id="backBtn" class="btn btn-back"></button>
-            </div>
+            <button id="backBtn" class="btn btn-back"></button>
 
             <div class="game-info">
                 <div class="info-item">
@@ -40,19 +40,22 @@
             <div class="slot-machine">
                 <div class="reels">
                     <div class="reel" id="reel1">
-                        <div class="symbol"><img src="images/ruleta/ruleta/siete.png" alt="siete" class="slot-icon" /></div>
+                        <div class="symbol"><img src="images/ruleta/ruleta/siete.png" alt="siete" class="slot-icon" />
+                        </div>
                     </div>
                     <div class="reel" id="reel2">
-                        <div class="symbol"><img src="images/ruleta/ruleta/siete.png" alt="siete" class="slot-icon" /></div>
+                        <div class="symbol"><img src="images/ruleta/ruleta/siete.png" alt="siete" class="slot-icon" />
+                        </div>
                     </div>
                     <div class="reel" id="reel3">
-                        <div class="symbol"><img src="images/ruleta/ruleta/siete.png" alt="siete" class="slot-icon" /></div>
+                        <div class="symbol"><img src="images/ruleta/ruleta/siete.png" alt="siete" class="slot-icon" />
+                        </div>
                     </div>
                 </div>
-                
+
                 <button id="spinBtn" class="spin-button">🎰 SPIN</button>
                 <button id="restartBtn" class="btn btn-secondary">🔄 Restart Game</button>
-                
+
                 <!-- Palanca del slot machine -->
                 <div class="palanca-container">
                     <div class="palanca" id="palanca"></div>
@@ -80,4 +83,5 @@
     <script src="js/game.js"></script>
     <script src="js/ui.js"></script>
 </body>
+
 </html>
