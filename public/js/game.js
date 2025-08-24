@@ -26,27 +26,26 @@ class SlotMachine {
     this.maxFreeSpinsPerGame = 10
     this.freeSpinsUsed = 0
 
-    // Score table (only combinations defined with the current set)
+    // Score table simplificado - solo combinaciones de 3 símbolos iguales
     this.scoreTable = {
-      sietesietesiete: 300,
-      estrellaestrellaestrella: 270,
-      diamantediamantediamante: 150,
-      campanacampanacampana: 100,
-      cerezacerezacereza: 40,
-      negativo1negativo1negativo1: -25,
-      negativo2negativo2negativo2: -10,
+      sietesietesiete: 300,      // Jackpot
+      estrellaestrellaestrella: 270,  // Wild x3
+      diamantediamantediamante: 150,  // Diamante x3
+      campanacampanacampana: 100,     // Campana x3
+      cerezacerezacereza: 40,         // Cereza x3
+      negativo1negativo1negativo1: -25, // Negativo1 x3
+      negativo2negativo2negativo2: -10, // Negativo2 x3
     }
 
-    // Weights per reel (sum 100)
-    // Más dificultad: menos siete, más negativos
+    // Weights per reel (sum 100) - ajustados para mayor balance
     this.symbolWeights = {
-      siete: 18,
-      diamante: 10,
-      campana: 12,
-      cereza: 44,
-      estrella: 4,
-      negativo1: 6,
-      negativo2: 6,
+      siete: 8,       // Reducido a 8% como solicitado
+      diamante: 12,   // Mantenido
+      campana: 15,    // Mantenido
+      cereza: 35,     // Mantenido
+      estrella: 15,   // Aumentado a 15% como solicitado
+      negativo1: 10,  // Aumentado a 10% como solicitado
+      negativo2: 10,  // Aumentado a 10% como solicitado
     }
 
     this.init()
@@ -176,6 +175,7 @@ class SlotMachine {
           }
         }
       }
+      // Ya no necesitamos el else porque siempre habrá un resultado
 
       if (!isFreeSpin) {
         this.checkForFreeSpins(result)
@@ -249,25 +249,22 @@ class SlotMachine {
   }
 
   generateResult() {
-    const result = []
+    // Siempre generar 3 símbolos iguales para que siempre haya un resultado
+    const random = Math.random() * 100
+    let cumulativeWeight = 0
+    let selectedSymbol = "cereza"
 
-    for (let i = 0; i < 3; i++) {
-      const random = Math.random() * 100
-      let cumulativeWeight = 0
-      let selectedSymbol = "cereza"
-
-      for (const [symbol, weight] of Object.entries(this.symbolWeights)) {
-        cumulativeWeight += weight
-        if (random < cumulativeWeight) {
-          selectedSymbol = symbol
-          break
-        }
+    // Seleccionar un símbolo basado en los pesos
+    for (const [symbol, weight] of Object.entries(this.symbolWeights)) {
+      cumulativeWeight += weight
+      if (random < cumulativeWeight) {
+        selectedSymbol = symbol
+        break
       }
-
-      result.push(selectedSymbol)
     }
 
-    return result
+    // Retornar 3 símbolos idénticos
+    return [selectedSymbol, selectedSymbol, selectedSymbol]
   }
 
   displayResult(result) {
@@ -302,67 +299,12 @@ class SlotMachine {
   calculateScore(result) {
     const combination = result.join("")
 
+    // Solo verificar combinaciones exactas de 3 símbolos iguales
     if (this.scoreTable[combination] !== undefined) {
       return this.scoreTable[combination]
     }
 
-    // Comodín: estrella
-    const wildCount = result.filter((symbol) => symbol === "estrella").length
-    if (wildCount > 0) {
-      const nonWildSymbols = result.filter((symbol) => symbol !== "estrella")
-      if (nonWildSymbols.length > 0) {
-        const symbolCounts = {}
-        nonWildSymbols.forEach((symbol) => {
-          symbolCounts[symbol] = (symbolCounts[symbol] || 0) + 1
-        })
-
-        for (const [symbol, count] of Object.entries(symbolCounts)) {
-          if (count + wildCount >= 3) {
-            const wildCombination = symbol.repeat(3)
-            if (this.scoreTable[wildCombination] !== undefined) {
-              return this.scoreTable[wildCombination]
-            }
-          }
-        }
-      }
-    }
-
-    // Penalización por cualquier negativo presente (más difícil)
-    if (result.includes('negativo1')) return -15
-    if (result.includes('negativo2')) return -8
-
-    // Dos iguales + otro
-    const counts = {}
-    result.forEach((symbol) => {
-      counts[symbol] = (counts[symbol] || 0) + 1
-    })
-
-    const values = Object.values(counts)
-    if (values.includes(2) && values.includes(1)) {
-      for (const [symbol, count] of Object.entries(counts)) {
-        if (count === 2) {
-          if (symbol === "negativo1") return -15
-          if (symbol === "negativo2") return -5
-        }
-      }
-
-      let bestValue = 0
-      for (const [symbol, count] of Object.entries(counts)) {
-        if (count === 2 && symbol !== "negativo1" && symbol !== "negativo2") {
-          let symbolValue = 0
-          if (symbol === "siete") symbolValue = 20
-          else if (symbol === "diamante") symbolValue = 10
-          else if (symbol === "campana") symbolValue = 8
-          else if (symbol === "cereza") symbolValue = 3
-
-          if (symbolValue > bestValue) bestValue = symbolValue
-        }
-      }
-
-      if (bestValue) return bestValue
-      return 15
-    }
-
+    // Si no hay combinación de 3 iguales, no hay puntos
     return 0
   }
 
@@ -376,17 +318,18 @@ class SlotMachine {
     let freeSpinsWon = 0
     let message = ""
 
-    // Doble diamante = +1 giro
+    // Solo diamante x3 = +1 giro (más difícil)
     const diamondCount = result.filter((symbol) => symbol === "diamante").length
-    if (diamondCount >= 2) {
+    if (diamondCount === 3) {
       freeSpinsWon++
-      message = message ? `${message} 💎 Double diamond! +1 extra spin.` : "💎 Double diamond! You win an extra spin."
+      message = "💎 Triple diamond! You win an extra spin."
     }
 
-    // Estrella en el carrete central = +1 giro
-    if (result[1] === "estrella") {
-      freeSpinsWon++
-      message = message ? `${message} ⭐ Center wild! +1 extra spin.` : "⭐ Center wild! You win an extra spin."
+    // Solo estrella x3 = +2 giros (más difícil)
+    const starCount = result.filter((symbol) => symbol === "estrella").length
+    if (starCount === 3) {
+      freeSpinsWon += 2
+      message = message ? `${message} ⭐ Triple wild! +2 extra spins.` : "⭐ Triple wild! You win 2 extra spins."
     }
 
     if (freeSpinsWon > 0) {

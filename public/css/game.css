@@ -4,9 +4,9 @@ body.game-page {
   background-size: cover;
   overflow-x: hidden;
   /* Variables para posicionamiento manual de la palanca */
-  --palanca-right: 10.5vw;
+  --palanca-right: 8vw;
   /* distancia desde el borde derecho */
-  --palanca-top: 32%;
+  --palanca-top: 35%;
   /* posición vertical (50% = centro) */
 }
 
@@ -38,9 +38,9 @@ body.game-page {
 }
 
 .palanca {
-  width: 15vw;
+  width: 12vw;
   /* Tamaño ajustado para desktop */
-  height: 15vh;
+  height: 12vh;
   /* Tamaño ajustado para desktop */
   background: url('../images/palanca1.png') no-repeat center center;
   background-size: contain;
@@ -59,8 +59,8 @@ body.game-page {
   background: url('../images/botonback.png') no-repeat center center;
   background-size: contain;
   border: none;
-  width: clamp(80px, 10vw, 160px);
-  height: clamp(40px, 5vw, 80px);
+  width: clamp(60px, 8vw, 120px);
+  height: clamp(30px, 4vw, 60px);
   color: transparent;
   cursor: pointer;
   transition: transform 0.2s ease;
@@ -79,8 +79,8 @@ body.game-page {
 }
 
 .game-title-logo {
-  width: 5vw;
-  height: 5vw;
+  width: 4vw;
+  height: 4vw;
   background: url('../images/logo.png') no-repeat center center;
   background-size: contain;
 }
@@ -112,7 +112,7 @@ body.game-page {
   box-shadow: none;
   margin: 0;
   position: relative;
-  transform: translateY(-4vh);
+  transform: translateY(-2vh);
   /* subir la máquina de slots */
   overflow: visible;
   /* permitir que la palanca sea visible fuera del contenedor */
@@ -123,7 +123,7 @@ body.game-page {
   background: url('../images/jackpot.png') no-repeat center center;
   background-size: contain;
   /* evita recortes del marco */
-  padding: clamp(8px, 2.5vw, 40px);
+  padding: clamp(8px, 2vw, 30px);
   /* Reducido el padding interno */
   border-radius: 2vw;
   position: relative;
@@ -132,11 +132,11 @@ body.game-page {
   /* Gap eliminado para usar margin negativo */
   justify-content: center;
   align-items: center;
-  min-height: clamp(360px, 54vh, 720px);
-  /* 20% más grande: 300px * 1.2 = 360px, 45vh * 1.2 = 54vh, 600px * 1.2 = 720px */
+  min-height: clamp(300px, 45vh, 600px);
+  /* Ajustado para mejor proporción */
   width: 100%;
-  max-width: 144vw;
-  /* 20% más grande: 120vw * 1.2 = 144vw */
+  max-width: 120vw;
+  /* Ajustado para mejor proporción */
   margin: 0 auto;
 }
 
@@ -145,26 +145,26 @@ body.game-page {
   background: transparent !important;
   /* Eliminado el fondo blanco/gris */
   border-radius: 1.5vw;
-  padding: clamp(8px, 1.5vw, 25px);
+  padding: clamp(8px, 1.2vw, 20px);
   box-shadow: none;
   /* Eliminada la sombra interna */
   border: none;
   /* Eliminado el marco amarillo */
   overflow: hidden;
   /* que los símbolos no se salgan visualmente */
-  min-width: clamp(100px, 12vw, 280px);
-  /* Reducido el ancho mínimo */
-  min-height: clamp(120px, 20vh, 300px);
-  max-width: 20vw;
-  /* Reducido el ancho máximo */
-  max-height: 35vh;
+  min-width: clamp(80px, 10vw, 200px);
+  /* Ajustado el ancho mínimo */
+  min-height: clamp(100px, 15vh, 250px);
+  max-width: 18vw;
+  /* Ajustado el ancho máximo */
+  max-height: 30vh;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   flex: 1;
-  margin: 0 -2vw;
-  /* Margin negativo para juntar los reels */
+  margin: 0 -1.5vw;
+  /* Margin negativo reducido para juntar los reels */
 }
 
 
@@ -183,8 +183,8 @@ body.game-page {
 }
 
 .symbol {
-  font-size: clamp(32px, 4.5vw, 80px) !important;
-  /* tamaño reducido */
+  font-size: clamp(28px, 4vw, 70px) !important;
+  /* tamaño ajustado */
   width: auto;
   height: auto;
   display: flex;
@@ -194,8 +194,8 @@ body.game-page {
   text-align: center;
   text-shadow: 0.2vw 0.2vw 0.4vw rgba(0, 0, 0, 0.5);
   animation: symbolGlow 2s ease-in-out infinite alternate;
-  transform: translateY(5%);
-  /* Baja los símbolos un 5% para mejor posicionamiento */
+  transform: translateY(3%);
+  /* Ajustado el posicionamiento */
 }
 
 @keyframes symbolGlow {
@@ -254,42 +254,42 @@ body.game-page {
   transition: all 0.3s ease;
   box-shadow: none;
   text-shadow: none;
-  min-width: clamp(180px, 20vw, 320px);
-  height: clamp(60px, 8vh, 120px);
+  min-width: clamp(150px, 18vw, 280px);
+  height: clamp(50px, 6vh, 100px);
   margin-top: 2vh;
 }
 
 /* Escala para pantallas grandes */
 @media (min-width: 1400px) {
   .reels {
-    max-width: 156vw;
-    /* 20% más grande: 130vw * 1.2 = 156vw */
+    max-width: 130vw;
+    /* Ajustado para pantallas grandes */
     gap: 0vw;
     /* Gap eliminado para usar margin negativo */
-    min-height: clamp(480px, 66vh, 840px);
-    /* 20% más grande: 400px * 1.2 = 480px, 55vh * 1.2 = 66vh, 700px * 1.2 = 840px */
+    min-height: clamp(400px, 55vh, 700px);
+    /* Ajustado para pantallas grandes */
   }
 
   .reel {
-    min-width: clamp(160px, 18vw, 360px);
-    /* Reducido proporcionalmente */
-    min-height: clamp(200px, 26vh, 420px);
-    margin: 0 -2vw;
+    min-width: clamp(120px, 15vw, 300px);
+    /* Ajustado proporcionalmente */
+    min-height: clamp(150px, 20vh, 350px);
+    margin: 0 -1.5vw;
     /* Margin negativo para juntar los reels */
   }
 
   .symbol {
-    font-size: clamp(48px, 5.5vw, 96px) !important;
+    font-size: clamp(40px, 5vw, 80px) !important;
   }
 
   /* Palanca para desktop */
   .palanca {
-    width: 12vw;
-    height: 12vh;
+    width: 10vw;
+    height: 10vh;
   }
 
   .palanca-container {
-    right: var(--palanca-right, 8vw);
+    right: var(--palanca-right, 6vw);
     top: var(--palanca-top, 35%);
   }
 }

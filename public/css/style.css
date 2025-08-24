@@ -36,26 +36,26 @@ body.leaderboard-page {
 /* Variables ajustables para LOGIN */
 .login-page {
   /* ancho total del bloque (h2 + input + botón) */
-  --login-block-width: 32vw;
+  --login-block-width: 28vw;
   /* desplazamiento superior del bloque en la pantalla */
-  --login-offset-top: -5vh;
+  --login-offset-top: -3vh;
   /* subir todo el bloque */
   /* padding interno del banner del título */
-  --login-title-pad-v: 2vh;
-  --login-title-pad-h: 2vw;
+  --login-title-pad-v: 1.8vh;
+  --login-title-pad-h: 1.8vw;
   /* alturas de los controles */
-  --login-input-height: 6.5vh;
-  --login-button-height: 9vh;
+  --login-input-height: 6vh;
+  --login-button-height: 8vh;
   /* offsets verticales finos para ubicar h2 e input en líneas específicas */
   --login-after-logo-space: 1vh;
   /* espacio bajo el logo */
-  --login-title-top: -2vh;
+  --login-title-top: -1.5vh;
   /* distancia desde el logo hasta el h2 (más cerca) */
-  --login-title-bottom: 5vh;
+  --login-title-bottom: 4vh;
   /* espacio bajo el h2 (menos espacio) */
-  --login-input-top: 1vh;
+  --login-input-top: 0.8vh;
   /* espacio sobre el input (menos espacio) */
-  --login-input-bottom: 4vh;
+  --login-input-bottom: 3vh;
   /* espacio bajo el input (menos espacio) */
 }
 
@@ -258,8 +258,8 @@ body.leaderboard-page {
 }
 
 .login-page .game-title-logo {
-  width: clamp(120px, 14vw, 220px);
-  height: clamp(120px, 14vw, 220px);
+  width: clamp(100px, 12vw, 200px);
+  height: clamp(100px, 12vw, 200px);
 }
 
 /* Login: banner para título e input usando casino buttons-07 */
@@ -279,7 +279,7 @@ body.leaderboard-page {
   padding: var(--login-title-pad-v) var(--login-title-pad-h);
   border-radius: 0.6vw;
   /* menos redondeo */
-  font-size: 1.8vw;
+  font-size: 1.6vw;
   /* texto más pequeño */
 }
 
@@ -293,11 +293,11 @@ body.leaderboard-page {
   border: none;
   box-shadow: none;
   height: var(--login-input-height);
-  padding: 0 7vw;
+  padding: 0 6vw;
   font-weight: bold;
   border-radius: 0vw;
   /* menos redondeo */
-  font-size: 1.6vw;
+  font-size: 1.4vw;
   /* texto más pequeño */
 }
 
@@ -394,8 +394,8 @@ body.leaderboard-page {
 }
 
 .menu-page .game-title-logo {
-  width: 16vw;
-  height: 16vw;
+  width: 14vw;
+  height: 14vw;
 }
 
 /* Banner para Welcome + nombre del jugador */
@@ -1483,19 +1483,19 @@ body.game-page {
   }
 
   .menu-page .player-info p {
-    width: 82vw;
-    height: 9.5vh;
-    font-size: 4.2vw;
+    width: 70vw;
+    height: 8vh;
+    font-size: 2.2vw;
   }
 
   .menu-page .menu-buttons {
     transform: none;
-    gap: 2vh;
+    gap: 1.8vh;
   }
 
   .menu-page .menu-buttons .btn {
-    width: 82vw;
-    height: 10.5vh;
+    width: 70vw;
+    height: 9vh;
   }
 
   /* Leaderboard: tabla legible y botón back arriba a la izquierda */
@@ -1507,30 +1507,30 @@ body.game-page {
     position: fixed;
     top: 1.5vh;
     left: 1.5vw;
-    width: 22vw;
-    height: 11vw;
+    width: 18vw;
+    height: 9vw;
     z-index: 100;
   }
 
   .leaderboard-page .leaderboard-content {
-    max-width: 88vw;
+    max-width: 60vw;
     margin: 0 auto;
     transform: none;
   }
 
   .table-header,
   .table-body {
-    max-width: 88vw;
+    max-width: 60vw;
   }
 
   .leaderboard-table th,
   .leaderboard-table td {
-    font-size: 3.5vw;
-    padding: 1vh 1vw;
+    font-size: 1.8vw;
+    padding: 1.2vh 1.2vw;
   }
 
   .table-body {
-    max-height: 56vh;
+    max-height: 50vh;
   }
 
   /* Game: back arriba-izquierda más grande y paneles informativos grandes */
@@ -1542,8 +1542,8 @@ body.game-page {
     position: fixed;
     top: 1.5vh;
     left: 1.5vw;
-    width: 22vw;
-    height: 11vw;
+    width: 18vw;
+    height: 9vw;
     z-index: 100;
   }
 
@@ -1552,11 +1552,11 @@ body.game-page {
     display: grid !important;
     grid-template-columns: 1fr 1fr;
     grid-gap: 2vh 3vw;
-    transform: translateY(14vh);
+    transform: translateY(8vh);
   }
 
   .game-page .info-item {
-    min-height: 20vh;
+    min-height: 16vh;
     min-width: auto;
   }
 
@@ -1566,7 +1566,7 @@ body.game-page {
   }
 
   .game-page .info-item span:last-child {
-    font-size: 13vw;
+    font-size: 8vw;
     transform: none !important;
   }
 
@@ -1575,7 +1575,64 @@ body.game-page {
   .game-page #spinsLeft,
   .game-page #currentScore,
   .game-page #freeSpins {
-    font-size: 13vw;
+    font-size: 8vw;
     transform: none !important;
+  }
+}
+
+/* Botón de mute para música */
+.mute-button {
+  position: fixed;
+  top: 2vh;
+  right: 2vw;
+  width: 4vw;
+  height: 4vw;
+  min-width: 40px;
+  min-height: 40px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  color: white;
+  font-size: 1.5vw;
+  cursor: pointer;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mute-button:hover {
+  transform: scale(1.1);
+  background: rgba(0, 0, 0, 0.8);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.mute-button:active {
+  transform: scale(0.95);
+}
+
+/* Responsive para el botón de mute */
+@media (max-width: 768px) {
+  .mute-button {
+    width: 6vw;
+    height: 6vw;
+    min-width: 50px;
+    min-height: 50px;
+    font-size: 2.5vw;
+    top: 1.5vh;
+    right: 1.5vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .mute-button {
+    width: 8vw;
+    height: 8vw;
+    min-width: 60px;
+    min-height: 60px;
+    font-size: 3vw;
+    top: 1vh;
+    right: 1vw;
   }
 }

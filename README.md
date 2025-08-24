@@ -1,186 +1,122 @@
-# 🎰 Kokok The Roach - Slot Machine Game
+# Kokok-Pot Slot Machine Game
 
-A modern slot machine game built with HTML5, CSS3, JavaScript, and Node.js backend with MongoDB integration.
+Un juego de tragamonedas interactivo desarrollado con HTML, CSS y JavaScript.
 
-## 🎮 Features
+## 🎮 Características del Juego
 
-- **Slot Machine Gameplay**: Classic 3-reel slot machine with animated spins
-- **User Authentication**: Player login system with persistent progress
-- **Score Tracking**: Save and track player scores and achievements
-- **Leaderboard**: Real-time top scores ranking
-- **Responsive Design**: Optimized for both desktop and mobile devices
-- **Sound Effects**: Background music and game sound effects
-- **Progress Persistence**: Save game progress between sessions
-- **Anti-Cheat System**: Players are locked after completing 30 spins
+### Lógica Simplificada
+- **Siempre 3 símbolos iguales**: El juego ahora **siempre** genera 3 símbolos idénticos en cada giro
+- **Resultado garantizado**: Cada giro siempre produce un resultado (ganar o perder puntos)
+- **Sin giros sin resultado**: Se eliminó la posibilidad de giros sin combinación ganadora
+- **Sistema de puntuación claro**: Cada símbolo tiene un valor específico cuando se obtienen 3 iguales
 
-## 🚀 Quick Start
+### Símbolos y Puntuaciones
+- 🎰 **7️⃣ x3** = 300 puntos (Jackpot)
+- ⭐ **⭐ x3** = 270 puntos (Wild)
+- 💎 **💎 x3** = 150 puntos (Diamante)
+- 🔔 **🔔 x3** = 100 puntos (Campana)
+- 🍒 **🍒 x3** = 40 puntos (Cereza)
+- 💀 **💀 x3** = -25 puntos (Negativo)
+- ☠️ **☠️ x3** = -10 puntos (Negativo)
 
-### Prerequisites
+### Giros Extra
+- **3 diamantes** = +1 giro extra
+- **3 wilds** = +2 giros extra
+- Máximo 10 giros extra por partida
 
-- Node.js (v16 or higher)
-- MongoDB (local or Atlas)
-- Modern web browser
+### Control de Audio
+- **Botón de mute**: Nuevo botón flotante para silenciar/activar música y efectos de sonido
+- **Preferencias guardadas**: El estado de mute se guarda en localStorage
+- **Posicionamiento responsive**: El botón se adapta a diferentes tamaños de pantalla
 
-### Installation
+## 🎨 Mejoras de Diseño
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/yourusername/kokok-pot-game.git
-   cd kokok-pot-game
-   ```
+### Responsividad Mejorada
+- **Medidas en vh/vw**: Optimizado para monitores desktop con mejor proporción de pantalla
+- **Ajustes específicos**: Tamaños y posiciones optimizados para diferentes resoluciones
+- **Compatibilidad**: Funciona bien en la mayoría de monitores desktop
 
-2. **Install dependencies**
-   ```bash
-   cd server
-   npm install
-   ```
+### Interfaz de Usuario
+- **Botón de mute flotante**: Posicionado en la esquina superior derecha
+- **Animaciones suaves**: Transiciones mejoradas para una mejor experiencia
+- **Feedback visual**: Mensajes claros para cada resultado del juego
 
-3. **Set up environment variables**
-   ```bash
-   # Create .env file in server directory
-   MONGO_URI=mongodb://localhost:27017/kokokpot
-   PORT=8081
-   ```
+## 🚀 Cómo Jugar
 
-4. **Start the server**
-   ```bash
-   npm run dev
-   ```
+1. **Inicia sesión** con tu nombre de usuario
+2. **Haz clic en "Play"** para comenzar el juego
+3. **Gira los carretes** haciendo clic en el botón SPIN o jalando la palanca
+4. **Obtén 3 símbolos iguales** para ganar puntos
+5. **Usa los giros extra** estratégicamente
+6. **Intenta conseguir el mejor puntaje** en 30 giros
 
-5. **Open the game**
-   - Navigate to `http://localhost:8081`
-   - Create a username and start playing!
-
-## 🏗️ Project Structure
+## 📁 Estructura del Proyecto
 
 ```
-kokok-pot-game/
-├── css/                 # Stylesheets
-│   ├── style.css       # Main styles and responsive design
-│   └── game.css        # Game-specific styles
-├── js/                  # JavaScript files
-│   ├── auth.js         # Authentication logic
-│   ├── game.js         # Core game mechanics
-│   ├── leaderboard.js  # Leaderboard management
-│   ├── ui.js           # UI animations and effects
-│   ├── sound.js        # Audio management
-│   └── config.js       # API configuration
-├── images/              # Game assets and images
-├── server/              # Backend server
-│   ├── src/
-│   │   └── index.js    # Express server and API endpoints
-│   └── package.json    # Backend dependencies
-├── *.html               # Frontend pages
-└── README.md           # This file
+Kokokpot1/
+├── public/
+│   ├── css/
+│   │   ├── style.css      # Estilos principales
+│   │   └── game.css       # Estilos específicos del juego
+│   ├── js/
+│   │   ├── game.js        # Lógica del juego
+│   │   ├── sound.js       # Sistema de audio
+│   │   ├── auth.js        # Autenticación
+│   │   └── ui.js          # Interfaz de usuario
+│   ├── images/            # Assets gráficos
+│   ├── soundtrack/        # Archivos de audio
+│   ├── index.html         # Página principal
+│   ├── login.html         # Página de login
+│   ├── menu.html          # Menú principal
+│   ├── game.html          # Página del juego
+│   └── leaderboard.html   # Tabla de puntuaciones
+└── server/                # Backend (opcional)
 ```
 
-## 🎯 Game Rules
+## 🛠️ Tecnologías Utilizadas
 
-- **Starting Spins**: Each player starts with 30 spins
-- **Symbols**: Various symbols with different point values
-- **Scoring**: Points are awarded based on symbol combinations
-- **Free Spins**: Bonus spins can be earned during gameplay
-- **Game End**: Game ends after 30 spins, player is locked from replaying
+- **HTML5**: Estructura semántica
+- **CSS3**: Estilos y animaciones
+- **JavaScript ES6+**: Lógica del juego
+- **LocalStorage**: Persistencia de datos
+- **Responsive Design**: Adaptable a diferentes pantallas
 
-## 🔧 API Endpoints
+## 🎵 Sistema de Audio
 
-### Authentication
-- `POST /api/auth/login` - Player login/registration
+- **Música de fondo**: Reproducción automática con fallback para interacción del usuario
+- **Efectos de sonido**: Para giros, victorias y derrotas
+- **Control de mute**: Botón para silenciar/activar todo el audio
+- **Persistencia**: El estado de mute se guarda entre sesiones
 
-### Game Progress
-- `POST /api/progress` - Save current game progress
-- `POST /api/score` - Submit final game score
+## 📱 Compatibilidad
 
-### Leaderboard
-- `GET /api/leaderboard` - Get top scores
-- `GET /api/debug/users` - Debug endpoint for user data
+- **Desktop**: Optimizado para monitores de escritorio
+- **Tablets**: Interfaz adaptativa para pantallas medianas
+- **Móviles**: Diseño responsive para dispositivos móviles
+- **Navegadores**: Compatible con Chrome, Firefox, Safari, Edge
 
-## 🎨 Customization
+## 🔧 Instalación y Uso
 
-### Adding New Symbols
-1. Add symbol image to `images/ruleta/ruleta/`
-2. Update `symbolAssets` in `js/game.js`
-3. Adjust `symbolWeights` for probability
+1. Clona o descarga el proyecto
+2. Abre `public/index.html` en tu navegador
+3. ¡Disfruta del juego!
 
-### Modifying Game Balance
-- Edit `symbolWeights` in `js/game.js`
-- Adjust point values in `calculateScore()` method
+## 📝 Notas de Desarrollo
 
-### Styling Changes
-- Modify `css/style.css` for general styles
-- Edit `css/game.css` for game-specific styles
+### Cambios Recientes
+- **Lógica simplificada**: Siempre se generan 3 símbolos iguales en cada giro
+- **Resultado garantizado**: Cada giro siempre produce un resultado (ganar o perder)
+- **Botón de mute**: Control de audio mejorado
+- **Responsividad**: Optimización para desktop
+- **Instrucciones actualizadas**: Reflejan la nueva lógica del juego
 
-## 📱 Responsive Design
-
-The game automatically adapts to different screen sizes:
-- **Desktop**: Full layout with all features
-- **Mobile Portrait**: Optimized layout for vertical orientation
-- **Touch Controls**: Responsive buttons and controls
-
-## 🚀 Deployment
-
-### Backend (Render/Heroku)
-1. Push code to GitHub
-2. Connect repository to Render/Heroku
-3. Set environment variables:
-   - `MONGO_URI`: Your MongoDB connection string
-   - `PORT`: Server port (auto-assigned by platform)
-
-### Frontend (Vercel/Netlify)
-1. Deploy from GitHub repository
-2. Set build command: `npm run build` (if needed)
-3. Set publish directory: `/` (root)
-
-### Database (MongoDB Atlas)
-1. Create MongoDB Atlas cluster
-2. Get connection string
-3. Update `MONGO_URI` in backend environment
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-**Game not loading**
-- Check browser console for errors
-- Verify backend server is running
-- Check MongoDB connection
-
-**Scores not saving**
-- Verify API endpoints are accessible
-- Check MongoDB connection string
-- Review server logs for errors
-
-**Responsive issues**
-- Clear browser cache
-- Test on different devices
-- Check CSS media queries
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- Game assets and design inspiration
-- MongoDB and Node.js communities
-- Modern web development tools and frameworks
-
-## 📞 Support
-
-If you encounter any issues or have questions:
-- Create an issue on GitHub
-- Check the troubleshooting section
-- Review server logs for error details
+### Balance del Juego
+- **Probabilidades ajustadas**: Para un juego más equilibrado
+- **Puntuaciones claras**: Sistema de puntos simplificado
+- **Dificultad moderada**: Desafiante pero justo
+- **Experiencia consistente**: Siempre hay un resultado en cada giro
 
 ---
 
-**Happy Gaming! 🎰✨**
+¡Disfruta jugando Kokok-Pot! 🎰✨
 
