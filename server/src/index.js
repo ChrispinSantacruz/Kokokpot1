@@ -34,6 +34,7 @@ app.use(express.json())
 
 const mongoUri = process.env.MONGO_URI || 'mongodb://localhost:27017/kokokpot'
 await mongoose.connect(mongoUri)
+console.log('✅ Connected to MongoDB Atlas')
 
 const ScoreSchema = new mongoose.Schema({
   username: { type: String, required: true, index: true },
