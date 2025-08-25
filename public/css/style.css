@@ -1,3 +1,22 @@
+#backBtn {
+  position: fixed !important;
+  top: 2vh !important;
+  left: 2vw !important;
+  width: 10vw !important;
+  height: 10vw !important;
+  min-width: 80px !important;
+  min-height: 80px !important;
+  z-index: 1200 !important;
+  box-shadow: 0 0 2vw 0.5vw rgba(0,0,0,0.25) !important;
+  border-radius: 50% !important;
+  background-color: rgba(0,0,0,0.15) !important;
+  opacity: 1 !important;
+  transform: none !important;
+  transition: 0.6s !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  }
 /* Estilos generales */
 * {
   margin: 0;
@@ -791,7 +810,10 @@ body.leaderboard-page {
 /* Leaderboard */
 .leaderboard-content {
   width: 100%;
-  max-width: 80vw;
+  max-width: 98vw;
+  min-width: 80vw;
+  margin: 0 auto;
+  font-size: 4vw !important;
 }
 
 /* Leaderboard: sin fondo blanco, logo grande centrado y sin texto */
@@ -846,19 +868,18 @@ body.leaderboard-page {
   border-collapse: collapse;
   margin-top: 2vh;
   background: none;
-  /* eliminar rectángulo oscuro */
-  border-radius: 0;
-  overflow: hidden;
+  border-radius: 1vw;
+  overflow: visible;
   backdrop-filter: none;
-  /* sin blur */
   border: none;
+  font-size: 2vw;
 }
 
 .leaderboard-table th,
 .leaderboard-table td {
-  padding: 1vh 1vw;
+  padding: 2vh 2vw;
   text-align: center;
-  font-size: 1.5vw;
+  font-size: 4vw !important;
 }
 
 .leaderboard-table th {
@@ -1077,9 +1098,9 @@ body.leaderboard-page {
   .btn {
     min-width: 25vw;
     font-size: 1.8vw;
-    padding: 1vh 2vw;
-  }
-
+    padding: 2vh 2vw;
+    text-align: center;
+    font-size: 2.8vw;
   .menu-buttons .btn {
     min-width: 30vw;
     font-size: 2vw;
@@ -1207,7 +1228,7 @@ body.leaderboard-page {
 
   .btn {
     min-width: 30vw;
-    font-size: 2.2vw;
+    font-size: 2.8vw;
     padding: 0.8vh 1.5vw;
     margin: 0.6vw;
   }
@@ -1221,7 +1242,7 @@ body.leaderboard-page {
   .table-header,
   .leaderboard-row {
     grid-template-columns: 10vw 1fr 18vw 18vw;
-    font-size: 1.1vw;
+    font-size: 1vw;
     padding: 1vh 0.8vw;
   }
 
@@ -1485,7 +1506,7 @@ body.game-page {
   .menu-page .player-info p {
     width: 70vw;
     height: 8vh;
-    font-size: 2.2vw;
+    font-size: 10.2vw;
   }
 
   .menu-page .menu-buttons {
@@ -1539,25 +1560,29 @@ body.game-page {
   }
 
   .game-page .game-header .btn-back {
-    position: fixed;
-    top: 1.5vh;
-    left: 1.5vw;
-    width: 18vw;
-    height: 9vw;
-    z-index: 100;
+  position: fixed;
+  top: 2vh;
+  left: 2vw;
+  width: 22vw;
+  height: 11vw;
+  z-index: 200;
+  box-shadow: 0 0 2vw 0.5vw rgba(0,0,0,0.25);
+  border-radius: 2vw;
+  background-color: rgba(0,0,0,0.08);
   }
 
   /* Game info en 2x2 más abajo y más grande */
   .game-page .game-info {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 2vh 3vw;
-    transform: translateY(8vh);
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1vh 3vw;
+  transform: translateY(5vh);
   }
 
   .game-page .info-item {
-    min-height: 16vh;
-    min-width: auto;
+    min-height: 18vh;
+    min-width: 80vw;
+    padding: 5vh 7vw;
   }
 
   /* Evitar conflictos con el desplazamiento por variable */
@@ -1572,34 +1597,40 @@ body.game-page {
 
   /* Refuerzo por ID para incrementar especificidad y evitar reglas previas */
   .game-page #currentPlayer,
+  .game-page #currentPlayer {
+    font-size: 8vw;
+    transform: none !important;
+    margin-top: 6vh;
+  }
   .game-page #spinsLeft,
   .game-page #currentScore,
   .game-page #freeSpins {
     font-size: 8vw;
     transform: none !important;
+    margin-top: 6vh;
   }
 }
 
 /* Botón de mute para música */
 .mute-button {
-  position: fixed;
-  top: 2vh;
-  right: 2vw;
-  width: 4vw;
-  height: 4vw;
-  min-width: 40px;
-  min-height: 40px;
-  background: rgba(0, 0, 0, 0.7);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  color: white;
-  font-size: 1.5vw;
-  cursor: pointer;
-  z-index: 1000;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: fixed !important;
+  top: 2vh !important;
+  right: 2vw !important;
+  width: 10vw !important;
+  height: 10vw !important;
+  min-width: 80px !important;
+  min-height: 80px !important;
+  background: rgba(0, 0, 0, 0.7) !important;
+  border: 2px solid rgba(255, 255, 255, 0.3) !important;
+  border-radius: 50% !important;
+  color: white !important;
+  font-size: 3vw !important;
+  cursor: pointer !important;
+  z-index: 1200 !important;
+  transition: all 0.3s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 .mute-button:hover {

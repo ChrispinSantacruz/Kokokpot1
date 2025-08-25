@@ -856,4 +856,18 @@ body.game-page {
     z-index: 120;
     margin-left: 0;
   }
+
+    /* Ajuste de tamaño y posición de la info del jugador */
+    .game-page #currentPlayer,
+    .game-page #spinsLeft,
+    .game-page #currentScore,
+    .game-page #freeSpins {
+      font-size: 9vw;
+      transform: none !important;
+    }
+    .game-page .game-info {
+      margin-top: 10vh; /* Puedes ajustar este valor para bajar la info */
+      position: relative;
+      z-index: 2;
+    }
 }
